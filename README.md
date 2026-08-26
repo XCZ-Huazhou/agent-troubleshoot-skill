@@ -65,14 +65,32 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, Op
 
 ```json
 {
-  "common-issues": { "auth-errors": { "symptoms": [], "rootCause": "", "solutions": {} } },
+  "common-issues": {
+    "auth-errors": {
+      "id": "COMMON-AUTH-001",
+      "symptoms": ["401", "认证失败"],
+      "rootCause": "密钥过期或未配置",
+      "solutions": { "通用": "重新登录或更换密钥" }
+    }
+  },
   "frameworks": {
-    "Codex": { "unique-issues": [ { "id": "CODEX-001" } ] }
+    "Codex": {
+      "unique-issues": [
+        {
+          "symptoms": ["报错关键词"],
+          "rootCause": "问题成因",
+          "solution": "已验证的解决步骤",
+          "prevention": "预防措施（可选）"
+        }
+      ]
+    }
   },
   "metadata": { "totalCases": 30 }
 }
 ```
 
+- 「共同问题」用 `solutions`（可按平台分别给方案）；「独有问题」用单个 `solution`
+- 通过 Issue 或 PR 提交的新案例**无需填写 `id`**，收录时自动编号
 - 每次更新知识库前自动备份 `knowledge-base.json.bak`
 - 新案例相似度 > 0.8 时自动合并进已有案例
 
@@ -130,16 +148,34 @@ Once the skill is enabled, it triggers automatically when keywords like "Agent e
 
 ```json
 {
-  "common-issues": { "auth-errors": { "symptoms": [], "rootCause": "", "solutions": {} } },
+  "common-issues": {
+    "auth-errors": {
+      "id": "COMMON-AUTH-001",
+      "symptoms": ["401", "auth failed"],
+      "rootCause": "expired or missing credentials",
+      "solutions": { "general": "re-login or replace the key" }
+    }
+  },
   "frameworks": {
-    "Codex": { "unique-issues": [ { "id": "CODEX-001" } ] }
+    "Codex": {
+      "unique-issues": [
+        {
+          "symptoms": ["error keywords"],
+          "rootCause": "why it happened",
+          "solution": "verified fix steps",
+          "prevention": "optional"
+        }
+      ]
+    }
   },
   "metadata": { "totalCases": 30 }
 }
 ```
 
+- *Common issues* use `solutions` (per-platform fixes allowed); *unique issues* use a single `solution`
+- New cases submitted via Issue or PR should **omit the `id` field** — it is assigned automatically
 - The knowledge base is backed up automatically (`knowledge-base.json.bak`) before every update
-- New cases with similarity > 0.8 are merged into existing ones
+- Near-duplicates (similarity > 0.8) are merged into existing cases
 
 ---
 
