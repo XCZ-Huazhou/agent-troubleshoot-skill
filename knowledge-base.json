@@ -419,14 +419,14 @@
     "lastUpdated": "2026-08-26",
     "totalCases": 30,
     "frameworks": [
-      "Codex",
-      "Claude",
-      "ZCode",
-      "Gemini",
-      "Foundry",
-      "Reasonix",
       "AntiGravity",
-      "OpenCode"
+      "Claude",
+      "Codex",
+      "Foundry",
+      "Gemini",
+      "OpenCode",
+      "Reasonix",
+      "ZCode"
     ]
   }
 }
