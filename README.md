@@ -7,7 +7,7 @@
 **A learnable troubleshooting knowledge-base skill for AI coding agents | 可学习的 Agent 故障排查知识库技能**
 
 Works with any agent that supports the Agent Skills spec (Codex, Claude Code, opencode, etc.).
-适用于 Codex / Claude Code / opencode 等支持 Agent Skills 规范的 CLI 工具。
+适用于 Codex / Claude Code / opencode 等支持 Agent Skills 规范的 AI Agent。
 
 [English](#overview-english) | [中文](#简介中文)
 
