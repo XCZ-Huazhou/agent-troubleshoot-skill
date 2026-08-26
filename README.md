@@ -59,7 +59,7 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, Op
 
 ### 使用
 
-启用本技能后，若对话中提到「Agent 报错 / 排查 / 401 / timeout」等关键词即可自动触发技能。
+启用本技能后，若对话中提到「Agent 报错 / 排查 / 401 / timeout」等关键词即可自动触发诊断。每次修完，它都会先问一句「问题解决了吗」，等你确认后，才会把这条经验收进知识库。
 
 ### 知识库格式
 
@@ -142,7 +142,7 @@ To help the skill debug local agent issues effectively, have your AI assistant c
 
 ### Usage
 
-Once the skill is enabled, it triggers automatically when keywords like "Agent error / troubleshoot / 401 / timeout" appear in the conversation.
+Once the skill is enabled, it triggers automatically when keywords like "Agent error / troubleshoot / 401 / timeout" appear in the conversation. After each fix, it asks "Is the problem resolved?" — only after your confirmation will the case be added to the knowledge base.
 
 ### Knowledge base format
 
