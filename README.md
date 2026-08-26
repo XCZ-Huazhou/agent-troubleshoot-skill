@@ -54,7 +54,7 @@ To help the skill debug local agent issues effectively, have your AI assistant c
 
 ### Usage
 
-In skill-capable agents it triggers automatically — just mention keywords like "agent error", "troubleshoot", "401", "timeout".
+Once the skill is enabled, it triggers automatically when keywords like "Agent error / troubleshoot / 401 / timeout" appear in the conversation.
 
 ### Knowledge base format
 
@@ -114,7 +114,7 @@ In skill-capable agents it triggers automatically — just mention keywords like
 
 ### 使用
 
-在支持 skills 的 Agent 中可自动触发：对话中提到「Agent 报错 / 排查 / 401 / timeout」等关键词即可。
+启用本技能后，若对话中提到「Agent 报错 / 排查 / 401 / timeout」等关键词即可自动触发技能。
 
 ### 知识库格式
 
