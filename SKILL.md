@@ -447,8 +447,6 @@ python diagnose.py "Codex 报 401 错误"
 
 ## 版本历史
 
-- **v1.2.0** (2026-08-26): 新增 Reasonix/AntiGravity/OpenCode 三个主流平台支持及 6 个独有案例（总计 30 例）
-- **v1.1.1** (2026-08-26): 修复 Windows GBK 控制台 emoji 崩溃、独立运行时 utils 导入失败、自检断言边界、硬编码日期；新增 Python 环境选择说明
-- **v1.0.0** (2026-08-25): 初始版本，支持 Codex/Claude/ZCode/Gemini/Foundry 五大框架，预置 23 个常见案例
+- **v1.0.0** (2026-08-26): 首个公开发布。8 个平台（Codex/Claude/ZCode/Gemini/Foundry/Reasonix/AntiGravity/OpenCode）共 30 个案例；匹配器支持多词症状双向拆词与框架命中加成；提供中英文文档；内置「首次安装需按本机环境自行适配」提示
 
 - **v1.0.0** (2026-08-25): 初始版本，支持 Codex/Claude/ZCode/Gemini/Foundry 五大框架，预置 23 个常见案例
