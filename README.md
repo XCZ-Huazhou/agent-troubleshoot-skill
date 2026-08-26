@@ -10,7 +10,7 @@
 **概述：把踩过的坑都记下来，遇到问题让AI先翻笔记本，再动手修。**
 **Overview: Every pitfall you've hit gets written down. When AI sees a problem, it checks the notebook first, then fixes it.**
 
-**适用范围：**适用于Codex、Claude Code、OpenCode 等常用的Agent 工具。
+**适用范围：** 适用于Codex、Claude Code、OpenCode 等常用的Agent 工具。
 Works with any agent that supports the Agent Skills spec (Codex, Claude Code, OpenCode, etc.).
 
 [中文](#简介中文) | [English](#overview-english)
@@ -20,7 +20,7 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, Op
 ## 简介（中文）
 
 
-**原理：**基于确认过的排查经验持续积累，遇到历史同类故障时能快速识别并复用解决方案，显著缩短修复时间。
+**原理：** 基于确认过的排查经验持续积累，遇到历史同类故障时能快速识别并复用解决方案，显著缩短修复时间。
 
 它的作用体现在三层：
 
@@ -54,7 +54,7 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, Op
 | Reasonix 独有 | 推理链断裂（深度超限）、工具循环调用 |
 | ZCode 独有 | 技能不触发、hook失效、MCP断连、插件缺失 |
 
-### 安装
+### 安装：
 
 适用于任何支持技能机制的Agent（Codex / Claude Code / OpenCode 等）。**复制下面这一行发送给您的AI即可：**
 
@@ -65,16 +65,16 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, Op
 **⚠️ 安装后初始化***（以下是说明文字，无需复制发送）*
 为了更好地让该技能处理本机遇到的各种agent bug，安装完成后，它会自动做两件事：
 
-- **确认Python的运行环境**：自动全盘智能扫描所有可用环境（pixi / conda / 系统等），**弹出点击式选择框**让你挑一个作为默认运行环境——运行`diagnose.py`与自检所必需
+- **确认Python的运行环境**：自动全盘智能扫描所有可用环境（pixi / conda / 系统等），**弹出点击式选择框让你挑一个作为默认运行环境**——运行`diagnose.py`与自检所必需
 - **摸清你的Agent配置**：自动读取各Agent的设置与日志位置（如`~/.codex/config.toml`、`~/.claude/`），以及上网代理端口，供后续排查使用
 
 **💡 列表里没有你的Agent？** 无需等待更新——直接让您的AI大模型参照知识库现有案例的四个字段（症状symptoms、根因rootCause、解决方案solution、预防prevention）自行补充新平台的故障案例，并在`frameworks`中登记即可。
 
-### 使用
+### 使用：
 
 启用本技能后，若对话中提到「Agent报错 / 排查 / 401 / timeout」等关键词即可自动触发诊断。每次修完，它都会先问一句「请问现在问题解决了吗」，等你确认后，才会把这条经验收进知识库。
 
-### 知识库格式
+### 知识库格式：
 
 ```json
 {
@@ -147,7 +147,7 @@ Ships with 30 pre-loaded cases across 8 platforms:
 | Reasonix-specific | reasoning chain broken (max depth exceeded), tool loop / repeated tool calls |
 | ZCode-specific | skill not triggering, hook not firing, MCP disconnected, plugin missing |
 
-### Install
+### Install:
 
 Works with any skills-capable agent (Codex / Claude Code / OpenCode, etc.). **Copy & send just this line to your AI:**
 
@@ -163,11 +163,11 @@ To help the skill debug local agent issues effectively, after install it will au
 
 **💡 Using an agent not listed?** No need to wait for updates — ask your own AI to append cases for the new platform to `knowledge-base.json`, following the existing case format (symptoms / rootCause / solution / prevention), then register it under `frameworks`.
 
-### Usage
+### Usage:
 
 Once the skill is enabled, it triggers automatically when keywords like "Agent error / troubleshoot / 401 / timeout" appear in the conversation. After each fix, it asks "Is the problem resolved?" — only after your confirmation will the case be added to the knowledge base.
 
-### Knowledge base format
+### Knowledge base format:
 
 ```json
 {
