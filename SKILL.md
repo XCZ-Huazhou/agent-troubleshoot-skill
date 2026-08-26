@@ -4,6 +4,10 @@ description: >-
   Agent 故障排查知识库，支持 Codex/Claude/ZCode/Gemini/Foundry 等框架的常见问题诊断。
   自动学习用户遇到的 bug，形成可检索的知识库，下次遇到相似问题时快速匹配解决方案。
   触发关键词：Agent 报错、故障排查、诊断、401、429、timeout、rate limit、context limit、MCP server、skill not triggering 等。
+  A learnable troubleshooting knowledge base for AI coding agents (Codex, Claude Code,
+  ZCode, Gemini, Foundry): diagnoses common failures from error symptoms and auto-archives
+  resolved cases for future matching. Triggers: agent error, troubleshoot, diagnose,
+  401, 403, 429, timeout, rate limit, context limit, MCP server not found.
 ---
 
 ## 技能定位
@@ -421,6 +425,22 @@ zcode skill list --verbose
 
 ---
 
+## 运行环境（Python）
+
+- `diagnose.py` 与 `utils/matcher.py` 仅依赖 **Python 3.7+ 标准库**，无第三方依赖；
+- **解释器由用户自行选择**：pixi / conda / 系统 Python 均可，运行时显式指定路径即可；
+- 默认解释器遵循本机配置（如 pixi / conda 管理），可自行指定
+
+```bash
+# 示例（替换为你自己的解释器）
+python diagnose.py "Codex 报 401 错误"
+```
+
+---
+
 ## 版本历史
+
+- **v1.1.1** (2026-08-26): 修复 Windows GBK 控制台 emoji 崩溃、独立运行时 utils 导入失败、自检断言边界、硬编码日期；新增 Python 环境选择说明
+- **v1.0.0** (2026-08-25): 初始版本，支持 Codex/Claude/ZCode/Gemini/Foundry 五大框架，预置 23 个常见案例
 
 - **v1.0.0** (2026-08-25): 初始版本，支持 Codex/Claude/ZCode/Gemini/Foundry 五大框架，预置 23 个常见案例
