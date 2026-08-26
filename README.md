@@ -6,8 +6,8 @@
 
 **可学习的 Agent 故障排查知识库技能 | A learnable troubleshooting knowledge-base skill for AI coding agents**
 
-适用于 Codex / Claude Code / opencode 等常用的 agent 工具。
-Works with any agent that supports the Agent Skills spec (Codex, Claude Code, opencode, etc.).
+适用于 Codex / Claude Code / OpenCode 等常用的 agent 工具。
+Works with any agent that supports the Agent Skills spec (Codex, Claude Code, OpenCode, etc.).
 
 [中文](#简介中文) | [English](#overview-english)
 
@@ -26,7 +26,7 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, op
 | 类别 | 示例 |
 |---|---|
 | 共同问题 | 401 鉴权失败、429 限流、上下文溢出、网络超时、模型不存在 |
-| AntiGravity 独有 | 浏览器控制失败（Chrome/扩展）、工件与任务列表同步失败 |
+| Antigravity 独有 | 浏览器控制失败（Chrome/扩展）、工件与任务列表同步失败 |
 | Claude 独有 | artifact 渲染崩溃、shell 命令找不到、权限拒绝 |
 | Codex 独有 | MCP server 缺失、单模型上游慢导致超时、/model 切换失败 |
 | Foundry 独有（微软 Azure AI 平台） | azd 部署失败、trace 导出失败、missing agent.yaml |
@@ -37,7 +37,7 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, op
 
 ### 安装
 
-适用于任何支持技能机制的 Agent（Codex / Claude Code / opencode 等）。**复制下面这一行发送给您的 AI 即可：**
+适用于任何支持技能机制的 Agent（Codex / Claude Code / OpenCode 等）。**复制下面这一行发送给您的 AI 即可：**
 
 > 帮我安装 agent-troubleshoot 技能，项目地址：https://github.com/XCZ-Huazhou/agent-troubleshoot-skill ，下载放入我的技能目录并完成本机配置。
 
@@ -86,7 +86,7 @@ Ships with 30 pre-loaded cases across 8 platforms:
 | Category | Examples |
 |---|---|
 | Common | 401 auth failed, 429 rate limit, context overflow, network timeout, model not found |
-| AntiGravity-specific | browser control failure (Chrome/extension), artifact & task-list sync failure |
+| Antigravity-specific | browser control failure (Chrome/extension), artifact & task-list sync failure |
 | Claude-specific | artifact render crash, shell command not found, permission denied |
 | Codex-specific | MCP server missing, single slow upstream model causing timeout, /model switch failure |
 | Foundry-specific（Microsoft Azure AI） | azd deployment failure, trace export failure, missing agent.yaml |
@@ -97,7 +97,7 @@ Ships with 30 pre-loaded cases across 8 platforms:
 
 ### Install
 
-Works with any skills-capable agent (Codex / Claude Code / opencode, etc.). **Copy & send just this line to your AI:**
+Works with any skills-capable agent (Codex / Claude Code / OpenCode, etc.). **Copy & send just this line to your AI:**
 
 > 帮我安装 agent-troubleshoot 技能，项目地址：https://github.com/XCZ-Huazhou/agent-troubleshoot-skill ，下载放入我的技能目录并完成本机配置。
 
@@ -171,9 +171,9 @@ Issues and pull requests are welcome — especially new troubleshooting cases.
 
 ## Disclaimer · 免责声明
 
-> 本技能由 opencode 平台的 OX Alpha 模型整理、发布，技能跟内容描述可能存在不完善之处，敬请见谅！
+> 本技能由 OpenCode 平台的 OX Alpha 模型整理、发布，技能跟内容描述可能存在不完善之处，敬请见谅！
 >
-> This skill was curated and published by **OX Alpha**, an AI model on the **opencode** platform. The skill and its content description may be imperfect in places — thank you for your understanding!
+> This skill was curated and published by **OX Alpha**, an AI model on the **OpenCode** platform. The skill and its content description may be imperfect in places — thank you for your understanding!
 
 ## License
 

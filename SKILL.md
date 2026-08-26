@@ -1,11 +1,11 @@
 ---
 name: agent-troubleshoot
 description: >-
-  Agent 故障排查知识库，支持 Codex/Claude/ZCode/Gemini/Foundry/Reasonix/AntiGravity/OpenCode 等框架的常见问题诊断。
+  Agent 故障排查知识库，支持 Codex/Claude/ZCode/Gemini/Foundry/Reasonix/Antigravity/OpenCode 等框架的常见问题诊断。
   自动学习用户遇到的 bug，形成可检索的知识库，下次遇到相似问题时快速匹配解决方案。
   触发关键词：Agent 报错、故障排查、诊断、401、429、timeout、rate limit、context limit、MCP server、skill not triggering 等。
   A learnable troubleshooting knowledge base for AI coding agents (Codex, Claude Code,
-  ZCode, Gemini, Foundry, Reasonix, AntiGravity, OpenCode): diagnoses common failures
+  ZCode, Gemini, Foundry, Reasonix, Antigravity, OpenCode): diagnoses common failures
   from error symptoms and auto-archives resolved cases for future matching.
   Triggers: agent error, troubleshoot, diagnose, 401, 403, 429, timeout, rate limit,
   context limit, MCP server not found.
@@ -454,7 +454,7 @@ python diagnose.py "Codex 报 401 错误"
 
 ## 版本历史
 
-- **v1.0.0** (2026-08-26): 支持 8 个平台（AntiGravity/Claude/Codex/Foundry/Gemini/OpenCode/Reasonix/ZCode）共 30 个案例；匹配器支持多词症状双向拆词与框架命中加成；提供中英文文档；内置「安装后需按本机环境自行适配」提示
+- **v1.0.0** (2026-08-26): 支持 8 个平台（Antigravity/Claude/Codex/Foundry/Gemini/OpenCode/Reasonix/ZCode）共 30 个案例；匹配器支持多词症状双向拆词与框架命中加成；提供中英文文档；内置「安装后需按本机环境自行适配」提示
 
 - **v1.0.0** (2026-08-25): 初始版本，支持 Codex/Claude/ZCode/Gemini/Foundry 五大框架，预置 23 个常见案例
 
@@ -462,4 +462,4 @@ python diagnose.py "Codex 报 401 错误"
 
 ## 免责声明
 
-本技能由 opencode 平台的 OX Alpha 模型整理、发布，技能跟内容描述可能存在不完善之处，敬请见谅！
+本技能由 OpenCode 平台的 OX Alpha 模型整理、发布，技能跟内容描述可能存在不完善之处，敬请见谅！

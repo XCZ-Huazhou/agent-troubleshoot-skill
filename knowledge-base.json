@@ -356,7 +356,7 @@
         }
       ]
     },
-    "AntiGravity": {
+    "Antigravity": {
       "description": "Google Antigravity - Gemini 系 Agentic 开发平台/IDE",
       "unique-issues": [
         {
@@ -386,7 +386,7 @@
       ]
     },
     "OpenCode": {
-      "description": "opencode - 终端 AI 编码 Agent（支持自定义 Provider 与本地转发）",
+      "description": "OpenCode - 终端 AI 编码 Agent（支持自定义 Provider 与本地转发）",
       "unique-issues": [
         {
           "id": "OPENCODE-001",
@@ -419,7 +419,7 @@
     "lastUpdated": "2026-08-26",
     "totalCases": 30,
     "frameworks": [
-      "AntiGravity",
+      "Antigravity",
       "Claude",
       "Codex",
       "Foundry",

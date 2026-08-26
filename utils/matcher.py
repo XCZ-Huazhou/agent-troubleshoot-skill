@@ -63,7 +63,7 @@ FRAMEWORK_KEYWORDS = {
     "Gemini": ["gemini", "google ai", "thinking budget", "google studio"],
     "Foundry": ["foundry", "azure", "azd", "application insights", "azure ai"],
     "Reasonix": ["reasonix", "reasoning chain"],
-    "AntiGravity": ["antigravity", "anti-gravity"],
+    "Antigravity": ["antigravity", "anti-gravity"],
     "OpenCode": ["opencode", "open-code"],
 }
 
