@@ -6,7 +6,7 @@
 
 **可学习的 Agent 故障排查知识库技能 | A learnable troubleshooting knowledge-base skill for AI coding agents**
 
-适用于 Codex / Claude Code / OpenCode 等常用的 agent 工具。
+适用于 Codex、Claude Code、OpenCode 等常用的 AI 助手（Agent）工具。
 Works with any agent that supports the Agent Skills spec (Codex, Claude Code, OpenCode, etc.).
 
 [中文](#简介中文) | [English](#overview-english)
@@ -20,7 +20,7 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, Op
 1. **故障诊断**：根据错误症状（错误码、框架名、关键词）匹配历史案例，输出带置信度的解决方案
 2. **自动学习**：问题解决后自动归档新案例到知识库（Jaccard 语义去重、多解法合并）
 3. **两级分类**：「共同问题」是任何框架都可能遇到的（如 401 认证失败、429 限流）；「独有问题」是只在某个框架自身工具链里才存在的故障（例如 `azd` 部署错误只可能发生在微软 Foundry 上）
-4. **收录有门槛**：用户确认问题解决后才允许入库；API 密钥、端口、路径等敏感信息一律不收录——知识库可以放心公开分享
+4. **收录有门槛**：用户确认问题解决后才允许入库；应用程序接口（API）密钥、端口、路径等敏感信息一律不收录——知识库可以放心公开分享
 
 > **🔒 两句安心话**
 > - **你的敏感信息不会被收录**：API 密钥、令牌、端口、本机路径等，入库前都会自动删掉或替换掉
@@ -33,7 +33,7 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, Op
 | 共同问题 | 401 鉴权失败、429 限流、上下文溢出、网络超时、模型不存在 |
 | Antigravity 独有 | 浏览器控制失败（Chrome/扩展）、工件与任务列表同步失败 |
 | Claude 独有 | artifact 渲染崩溃、shell 命令找不到、权限拒绝 |
-| Codex 独有 | MCP server 缺失、单模型上游慢导致超时、/model 切换失败 |
+| Codex 独有 | 模型上下文协议（MCP）服务器缺失、单模型上游慢导致超时、切换模型失败 |
 | Foundry 独有（微软 Azure AI 平台） | azd 部署失败、trace 导出失败、missing agent.yaml |
 | Gemini 独有 | 思考预算耗尽、图片上传失败、日配额用尽 |
 | OpenCode 独有 | 自定义 provider 配置不生效、崩溃后会话恢复失败 |
@@ -55,7 +55,7 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, Op
 - **本机各 Agent 的配置与日志位置**（如 `~/.codex/config.toml`、`~/.claude/`）：排查框架专属故障时必需
 - **本机网络 / 代理端口**：诊断网络类故障时必需
 
-**💡 列表里没有你的 Agent？** 无需等待更新——直接让您的 AI 大模型参照知识库现有案例格式（symptoms / rootCause / solution / prevention）自行补充新平台的故障案例，并在 `frameworks` 中登记即可。
+**💡 列表里没有你的 Agent？** 无需等待更新——直接让您的 AI 大模型参照知识库现有案例的四个字段（症状 symptoms、根因 rootCause、解决方案 solution、预防 prevention）自行补充新平台的故障案例，并在 `frameworks` 中登记即可。
 
 ### 使用
 
@@ -98,7 +98,7 @@ Ships with 30 pre-loaded cases across 8 platforms:
 | Common | 401 auth failed, 429 rate limit, context overflow, network timeout, model not found |
 | Antigravity-specific | browser control failure (Chrome/extension), artifact & task-list sync failure |
 | Claude-specific | artifact render crash, shell command not found, permission denied |
-| Codex-specific | MCP server missing, single slow upstream model causing timeout, /model switch failure |
+| Codex-specific | Model Context Protocol (MCP) server missing, single slow upstream model causing timeout, model switching failure |
 | Foundry-specific（Microsoft Azure AI） | azd deployment failure, trace export failure, missing agent.yaml |
 | Gemini-specific | thinking budget exceeded, image upload failed, daily quota exhausted |
 | OpenCode-specific | custom provider config not applied, session restore failure after crash |
@@ -150,34 +150,14 @@ Once the skill is enabled, it triggers automatically when keywords like "Agent e
 
 ## Contributing · 贡献
 
-Issues and pull requests are welcome — especially new troubleshooting cases.
-欢迎提交 Issue 与 PR，尤其是补充新的故障案例。
+欢迎补充新故障案例，两种方式任选：
 
-**What to provide · 提交新案例请提供以下信息：**
+- **提交 Issue（问题反馈，推荐，无需会写代码）**：Issues 页选择「新故障案例」模板，按提示填写平台 / 症状 / 根因 / 解决方案即可，会由维护者审核后入库
+- **提交拉取请求（Pull Request，简称 PR）**：直接编辑 `knowledge-base.json` 追加案例（请省略 `id` 字段，由维护者统一编号）
 
-| Item 项目 | Description 说明 |
-|---|---|
-| Platform 平台 | Which agent framework it belongs to（属于哪个框架，如 Codex / Claude / 其他新平台）|
-| Symptoms 症状 | Exact error messages, error codes, keywords — both English & Chinese welcome（报错原文、错误码、关键词，中英文均可）|
-| Root cause 根因 | Why it happened, if known（成因，若已知）|
-| Solution 解决方案 | The steps that actually fixed it（实际验证有效的解决步骤）|
-| Prevention 预防 | Optional · 可选 |
+> ⚠️ **隐私红线**：任何内容（包括粘贴的报错日志）都不得包含 API 密钥、令牌、端口、内网地址、真实本地路径。
 
-**File types / formats · 文件类型与格式：**
-
-- **Easiest 最简单**: open an **Issue** and write the info above in plain text — the case will be formatted and merged into `knowledge-base.json` for you
-  （直接开一个 Issue 用纯文本写清楚上表内容即可，会有人/AI 帮你格式化入库）
-- **Via PR 走 PR**: edit `knowledge-base.json` directly, appending a new object under the matching platform's `unique-issues` (or create a new platform block), following the existing schema — `id` is auto-numbered, so leave it out or use the next number:
-  （直接编辑 `knowledge-base.json`，在对应平台的 `unique-issues` 里按现有字段追加一个对象即可，`id` 会自动编号）
-
-```json
-{
-  "symptoms": ["error message / 报错关键词"],
-  "rootCause": "why it happened / 成因",
-  "solution": "verified fix steps / 已验证的解决步骤",
-  "prevention": "optional / 可选"
-}
-```
+字段说明、审核流程等详见 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
 ## Disclaimer · 免责声明
 
