@@ -38,7 +38,8 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, Op
 
 1. **故障诊断**：根据错误症状（错误码、框架名、关键词）匹配历史案例，输出带置信度的解决方案
 2. **智能学习**：问题解决后由用户确认，新案例归档到知识库（Jaccard语义去重、多解法合并）
-3. **两级分类**：「共同问题」是任何框架都可能遇到的（如401认证失败、429限流）；「独有问题」是只在某个框架自身工具链里才存在的故障
+3. **避坑指南**：记录试过但没用的方法，帮你少走弯路（`wrongSolutions`字段）
+4. **两级分类**：「共同问题」是任何框架都可能遇到的（如401认证失败、429限流）；「独有问题」是只在某个框架自身工具链里才存在的故障
 
 预置 8 个平台共 30 个案例：
 
@@ -83,7 +84,10 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, Op
       "id": "COMMON-AUTH-001",
       "symptoms": ["401", "认证失败"],
       "rootCause": "密钥过期或未配置",
-      "solutions": { "通用": "重新登录或更换密钥" }
+      "solutions": { "通用": "重新登录或更换密钥" },
+      "wrongSolutions": [
+        {"method": "反复重试请求", "whyItFailed": "凭证过期后重试多少次结果都一样"}
+      ]
     }
   },
   "frameworks": {
@@ -93,6 +97,9 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, Op
           "symptoms": ["报错关键词"],
           "rootCause": "问题成因",
           "solution": "已验证的解决步骤",
+          "wrongSolutions": [
+            {"method": "试过但没用的方法", "whyItFailed": "为什么没用"}
+          ],
           "prevention": "预防措施（可选）"
         }
       ]
@@ -103,6 +110,7 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, Op
 ```
 
 - 「共同问题」用`solutions`（可按平台分别给方案）；「独有问题」用单个`solution`
+- `wrongSolutions`（可选）：记录试过但没用的方法，帮别人避坑；每条包含`method`（试了什么）和`whyItFailed`（为什么没用）
 - 通过Issue或PR提交的新案例**无需填写`id`**，收录时自动编号
 - 每次更新知识库前自动备份`knowledge-base.json.bak`
 - 新案例相似度> 0.8时自动合并进已有案例
@@ -131,7 +139,8 @@ Core features:
 
 1. **Diagnose**: matches error symptoms (error codes, framework names, keywords) against archived cases and returns ranked solutions with confidence scores
 2. **Smart learning**: resolved cases are archived only after user confirmation (Jaccard-based deduplication, multi-solution merging)
-3. **Two-level taxonomy**: cross-framework *common issues* (e.g. 401 auth, 429 rate limit — any agent can hit them) vs per-framework *unique issues* (failures that only exist inside one framework's own toolchain)
+3. **Dead-end avoidance**: documents tried-but-failed approaches so you skip the same wrong turns (`wrongSolutions` field)
+4. **Two-level taxonomy**: cross-framework *common issues* (e.g. 401 auth, 429 rate limit — any agent can hit them) vs per-framework *unique issues* (failures that only exist inside one framework's own toolchain)
 
 Ships with 30 pre-loaded cases across 8 platforms:
 
@@ -176,7 +185,10 @@ Once the skill is enabled, it triggers automatically when keywords like "Agent e
       "id": "COMMON-AUTH-001",
       "symptoms": ["401", "auth failed"],
       "rootCause": "expired or missing credentials",
-      "solutions": { "general": "re-login or replace the key" }
+      "solutions": { "general": "re-login or replace the key" },
+      "wrongSolutions": [
+        {"method": "retry the request repeatedly", "whyItFailed": "expired credentials won't work no matter how many retries"}
+      ]
     }
   },
   "frameworks": {
@@ -186,6 +198,9 @@ Once the skill is enabled, it triggers automatically when keywords like "Agent e
           "symptoms": ["error keywords"],
           "rootCause": "why it happened",
           "solution": "verified fix steps",
+          "wrongSolutions": [
+            {"method": "tried but failed approach", "whyItFailed": "why it didn't work"}
+          ],
           "prevention": "optional"
         }
       ]
@@ -196,6 +211,7 @@ Once the skill is enabled, it triggers automatically when keywords like "Agent e
 ```
 
 - *Common issues* use `solutions` (per-platform fixes allowed); *unique issues* use a single `solution`
+- `wrongSolutions` (optional): documents tried-but-failed approaches to help others avoid dead ends; each entry has `method` (what was tried) and `whyItFailed` (why it didn't work)
 - New cases submitted via Issue or PR should **omit the `id` field** — it is assigned automatically
 - The knowledge base is backed up automatically (`knowledge-base.json.bak`) before every update
 - Near-duplicates (similarity > 0.8) are merged into existing cases

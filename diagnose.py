@@ -71,6 +71,13 @@ def format_solution(match_result: dict, confidence: float) -> str:
     if "prevention" in issue_data:
         output.append(f"\n### 📚 预防措施\n\n{issue_data['prevention']}\n")
     
+    # 输出错误方案（避坑）
+    wrong = issue_data.get("wrongSolutions", [])
+    if wrong:
+        output.append("\n### ⚠️ 这些方法试过没用（避坑）\n")
+        for w in wrong:
+            output.append(f"- **{w.get('method', '?')}**：{w.get('whyItFailed', '没用')}\n")
+    
     output.append("\n---\n\n> 问题解决了吗？回复「已解决」我将记录这个案例到知识库。")
     
     return "\n".join(output)

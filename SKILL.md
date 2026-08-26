@@ -218,6 +218,12 @@ ELSE:
 
 ---
 
+### ⚠️ 这些方法试过没用（避坑）
+
+{wrongSolutions列表，每条包含 method 和 whyItFailed}
+
+---
+
 > 问题解决了吗？回复「已解决」我将记录这个案例到知识库。
 ```
 
@@ -264,6 +270,9 @@ ELSE:
         "all": "通用方案",
         "框架名": "特定框架方案"
       },
+      "wrongSolutions": [
+        {"method": "试过但没用的方法", "whyItFailed": "为什么没用"}
+      ],
       "diagnosis": "诊断命令",
       "prevention": "预防措施"
     }
@@ -277,6 +286,9 @@ ELSE:
           "symptoms": ["症状关键词"],
           "rootCause": "根本原因",
           "solution": "解决方案",
+          "wrongSolutions": [
+            {"method": "试过但没用的方法", "whyItFailed": "为什么没用"}
+          ],
           "prevention": "预防措施"
         }
       ]
