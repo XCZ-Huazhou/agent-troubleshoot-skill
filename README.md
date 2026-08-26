@@ -22,14 +22,14 @@ Ships with 30 pre-loaded cases across 8 platforms:
 | Category | Examples |
 |---|---|
 | Common | 401 auth failed, 429 rate limit, context overflow, network timeout, model not found |
-| Codex-specific | MCP server missing, single slow upstream model causing timeout, /model switch failure |
-| Claude-specific | artifact render crash, shell command not found, permission denied |
-| ZCode-specific | skill not triggering, hook not firing, MCP disconnected, plugin missing |
-| Gemini-specific | thinking budget exceeded, image upload failed, daily quota exhausted |
-| Foundry-specific | azd deployment failure, trace export failure, missing agent.yaml |
-| Reasonix-specific | reasoning chain broken (max depth exceeded), tool loop / repeated tool calls |
 | AntiGravity-specific | browser control failure (Chrome/extension), artifact & task-list sync failure |
+| Claude-specific | artifact render crash, shell command not found, permission denied |
+| Codex-specific | MCP server missing, single slow upstream model causing timeout, /model switch failure |
+| Foundry-specific（Microsoft Azure AI） | azd deployment failure, trace export failure, missing agent.yaml |
+| Gemini-specific | thinking budget exceeded, image upload failed, daily quota exhausted |
 | OpenCode-specific | custom provider config not applied, session restore failure after crash |
+| Reasonix-specific | reasoning chain broken (max depth exceeded), tool loop / repeated tool calls |
+| ZCode-specific | skill not triggering, hook not firing, MCP disconnected, plugin missing |
 
 ### Install
 
@@ -88,14 +88,14 @@ In skill-capable agents it triggers automatically on keywords like "agent error"
 | 类别 | 示例 |
 |---|---|
 | 共同问题 | 401 鉴权失败、429 限流、上下文溢出、网络超时、模型不存在 |
-| Codex 独有 | MCP server 缺失、单模型上游慢导致超时、/model 切换失败 |
-| Claude 独有 | artifact 渲染崩溃、shell 命令找不到、权限拒绝 |
-| ZCode 独有 | 技能不触发、hook 失效、MCP 断连、插件缺失 |
-| Gemini 独有 | 思考预算耗尽、图片上传失败、日配额用尽 |
-| Foundry 独有 | azd 部署失败、trace 导出失败、missing agent.yaml |
-| Reasonix 独有 | 推理链断裂（深度超限）、工具循环调用 |
 | AntiGravity 独有 | 浏览器控制失败（Chrome/扩展）、工件与任务列表同步失败 |
+| Claude 独有 | artifact 渲染崩溃、shell 命令找不到、权限拒绝 |
+| Codex 独有 | MCP server 缺失、单模型上游慢导致超时、/model 切换失败 |
+| Foundry 独有（微软 Azure AI 平台） | azd 部署失败、trace 导出失败、missing agent.yaml |
+| Gemini 独有 | 思考预算耗尽、图片上传失败、日配额用尽 |
 | OpenCode 独有 | 自定义 provider 配置不生效、崩溃后会话恢复失败 |
+| Reasonix 独有 | 推理链断裂（深度超限）、工具循环调用 |
+| ZCode 独有 | 技能不触发、hook 失效、MCP 断连、插件缺失 |
 
 ### 安装
 
