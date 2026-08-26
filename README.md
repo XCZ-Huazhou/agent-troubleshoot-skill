@@ -37,7 +37,7 @@ Ships with 30 pre-loaded cases across 8 platforms:
 
 ### Install
 
-Just tell your AI agent (Codex / Claude Code / opencode):
+Just tell your AI agent (Codex / Claude Code / opencode, etc. — any agent that supports skills):
 
 > 帮我安装 agent-troubleshoot 技能，项目地址：https://github.com/cjc505/agent-troubleshoot-skill ，下载放入我的技能目录并完成本机配置。
 
@@ -104,7 +104,7 @@ In skill-capable agents it triggers automatically on keywords like "agent error"
 
 ### 安装
 
-对你的 AI 助手说一句：
+对你的 AI 助手说一句（Codex / Claude Code / opencode 等支持技能的 Agent 均可）：
 
 > 帮我安装 agent-troubleshoot 技能，项目地址：https://github.com/cjc505/agent-troubleshoot-skill ，下载放入我的技能目录并完成本机配置。
 
