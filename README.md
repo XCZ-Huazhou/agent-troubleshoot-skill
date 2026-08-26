@@ -140,6 +140,12 @@ python utils/matcher.py
 - All files are UTF-8; output is safe on Windows GBK consoles (emoji/Chinese fallback)
 - Python 3.7+ standard library only — **any interpreter works** (pixi / conda / system Python), just specify the path explicitly at runtime
 
+## Disclaimer · 免责声明
+
+> 本技能由 opencode 平台的 OX Alpha 模型整理、发布，技能可能存在不完善之处，敬请见谅！
+>
+> This skill was curated and published by **OX Alpha**, an AI model on the **opencode** platform. It may be imperfect in places — thank you for your understanding!
+
 ## License
 
 MIT
