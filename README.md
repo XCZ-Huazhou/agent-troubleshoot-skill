@@ -48,12 +48,14 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, Op
 
 ---
 
-**⚠️ 安装后配置清单** *（以下是说明文字，无需复制发送）*
-为了更好地让该技能处理本机遇到的各种 agent bug，安装完成后请让 AI Agent 逐项确认：
+**⚠️ 安装后初始化** *（以下是说明文字，无需复制发送）*
+为了更好地让该技能处理本机遇到的各种 agent bug，安装完成后请让 AI Agent 执行一次初始化：
 
-- **Python 解释器路径**（pixi / conda / 系统环境均可）：运行 `diagnose.py` 与自检所必需
-- **本机各 Agent 的配置与日志位置**（如 `~/.codex/config.toml`、`~/.claude/`）：排查框架专属故障时必需
-- **本机网络 / 代理端口**：诊断网络类故障时必需
+- **Python 解释器**：AI 会自动扫描本机所有可用环境（pixi / conda / 系统等），列出清单由你挑选一个作为默认——运行 `diagnose.py` 与自检所必需
+- **各 Agent 的配置与日志位置**：AI 自动读取（如 `~/.codex/config.toml`、`~/.claude/`），用于排查框架专属故障
+- **网络 / 代理端口**：AI 自动读取，用于诊断网络类故障
+
+全程只需你在选择框里挑一个 Python 环境，其余无需动手。
 
 **💡 列表里没有你的 Agent？** 无需等待更新——直接让您的 AI 大模型参照知识库现有案例的四个字段（症状 symptoms、根因 rootCause、解决方案 solution、预防 prevention）自行补充新平台的故障案例，并在 `frameworks` 中登记即可。
 
@@ -131,12 +133,14 @@ Works with any skills-capable agent (Codex / Claude Code / OpenCode, etc.). **Co
 
 ---
 
-**⚠️ Post-install checklist** *(reference only — do NOT copy-paste this part)*
-To help the skill debug local agent issues effectively, have your AI assistant confirm each item after install:
+**⚠️ Post-install init** *(reference only — do NOT copy-paste this part)*
+To help the skill debug local agent issues effectively, have your AI assistant run a one-time init after install:
 
-- **Python interpreter path** (pixi / conda / system): required to run `diagnose.py` and self-tests
-- **Local config & log locations of your agents** (e.g. `~/.codex/config.toml`, `~/.claude/`): required for framework-specific diagnosis
-- **Network / proxy ports**: required when debugging network-type failures
+- **Python interpreter**: the AI scans every available environment on your machine (pixi / conda / system) and lists them in a picker for you to choose the default — needed to run `diagnose.py` and self-tests
+- **Agent config & log locations**: read automatically by the AI (e.g. `~/.codex/config.toml`, `~/.claude/`) — used for framework-specific diagnosis
+- **Network / proxy ports**: read automatically — used when debugging network-type failures
+
+The only thing you do is pick one Python environment from the list; everything else is hands-off.
 
 **💡 Using an agent not listed?** No need to wait for updates — ask your own AI to append cases for the new platform to `knowledge-base.json`, following the existing case format (symptoms / rootCause / solution / prevention), then register it under `frameworks`.
 

@@ -13,12 +13,13 @@ description: >-
 
 # Agent Troubleshoot Skill - 可学习的故障排查知识库
 
-> **⚠️ 首次安装必读**：为了更好地让该技能处理本机遇到的各种 agent bug，请自行配置所需的
-> 信息，直接让您的 AI Agent 完成以下事项：
-> 1. Python 解释器路径（pixi / conda / 系统环境均可）——运行 diagnose.py 与自检所必需；
-> 2. 本机各 Agent 的配置与日志位置（如 ~/.codex/config.toml、~/.claude/ 等）——排查框架
->    专属故障时必需；
-> 3. 本机网络 / 代理端口——诊断网络类故障时必需。
+> **⚠️ 首次安装必读**：为了更好地让该技能处理本机遇到的各种 agent bug，安装完成后请让您的
+> AI Agent 完成以下初始化：
+> 1. **扫描本机所有可用的 Python 解释器**（pixi / conda / 系统环境等），以选择框形式列出，
+>    由用户挑选一个作为默认环境——用于运行 diagnose.py 与自检；
+> 2. **自动读取**本机各 Agent 的配置与日志位置（如 ~/.codex/config.toml、~/.claude/ 等），
+>    无需用户手动指定；
+> 3. **自动读取**本机网络 / 代理端口设置，无需用户提供。
 >
 > **💡 扩展提示**：若您使用的 Agent 平台不在支持列表中，可让您的 AI 大模型参照知识库
 > 现有案例格式（symptoms / rootCause / solution / prevention）自行补充新平台条目，
