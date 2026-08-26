@@ -1,5 +1,9 @@
 # agent-troubleshoot-skill
 
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Platforms](https://img.shields.io/badge/platforms-8-blue)
+![Cases](https://img.shields.io/badge/cases-30-green)
+
 **A learnable troubleshooting knowledge-base skill for AI coding agents | 可学习的 Agent 故障排查知识库技能**
 
 Works with any agent that supports the Agent Skills spec (Codex, Claude Code, opencode, etc.).
@@ -139,6 +143,11 @@ python utils/matcher.py
 
 - All files are UTF-8; output is safe on Windows GBK consoles (emoji/Chinese fallback)
 - Python 3.7+ standard library only — **any interpreter works** (pixi / conda / system Python), just specify the path explicitly at runtime
+
+## Contributing · 贡献
+
+Issues and pull requests are welcome — especially new troubleshooting cases for the knowledge base.
+欢迎提交 Issue 与 PR，尤其是补充新的故障案例到知识库。
 
 ## Disclaimer · 免责声明
 
