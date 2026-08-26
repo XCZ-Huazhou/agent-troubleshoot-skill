@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Troubleshooting knowledge base covering 8 platforms: Codex, Claude, ZCode, Gemini, Foundry, Reasonix, AntiGravity, OpenCode
+- Troubleshooting knowledge base covering 8 platforms: AntiGravity, Claude, Codex, Foundry, Gemini, OpenCode, Reasonix, ZCode
 - 30 pre-loaded cases (common issues + framework-specific issues)
 - Self-learning workflow: resolved cases auto-archived with Jaccard-based deduplication
 - CLI diagnosis tool (`diagnose.py`) with confidence-scored matches

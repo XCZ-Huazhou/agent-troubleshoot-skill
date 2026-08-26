@@ -447,7 +447,7 @@ python diagnose.py "Codex 报 401 错误"
 
 ## 版本历史
 
-- **v1.0.0** (2026-08-26): 支持 8 个平台（Codex/Claude/ZCode/Gemini/Foundry/Reasonix/AntiGravity/OpenCode）共 30 个案例；匹配器支持多词症状双向拆词与框架命中加成；提供中英文文档；内置「安装后需按本机环境自行适配」提示
+- **v1.0.0** (2026-08-26): 支持 8 个平台（AntiGravity/Claude/Codex/Foundry/Gemini/OpenCode/Reasonix/ZCode）共 30 个案例；匹配器支持多词症状双向拆词与框架命中加成；提供中英文文档；内置「安装后需按本机环境自行适配」提示
 
 - **v1.0.0** (2026-08-25): 初始版本，支持 Codex/Claude/ZCode/Gemini/Foundry 五大框架，预置 23 个常见案例
 
