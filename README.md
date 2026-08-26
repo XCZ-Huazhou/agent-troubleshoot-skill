@@ -4,72 +4,12 @@
 ![Platforms](https://img.shields.io/badge/platforms-8-blue)
 ![Cases](https://img.shields.io/badge/cases-30-green)
 
-**A learnable troubleshooting knowledge-base skill for AI coding agents | 可学习的 Agent 故障排查知识库技能**
+**可学习的 Agent 故障排查知识库技能 | A learnable troubleshooting knowledge-base skill for AI coding agents**
 
-Works with any agent that supports the Agent Skills spec (Codex, Claude Code, opencode, etc.).
 适用于 Codex / Claude Code / opencode 等常用的 agent 工具。
+Works with any agent that supports the Agent Skills spec (Codex, Claude Code, opencode, etc.).
 
-[English](#overview-english) | [中文](#简介中文)
-
----
-
-## Overview (English)
-
-A **learnable troubleshooting knowledge base** for AI coding agents:
-
-1. **Diagnose**: matches error symptoms (error codes, framework names, keywords) against archived cases and returns ranked solutions with confidence scores
-2. **Self-learning**: resolved cases are auto-archived with Jaccard-based deduplication and multi-solution merging
-3. **Two-level taxonomy**: cross-framework *common issues* (e.g. 401 auth, 429 rate limit — any agent can hit them) vs per-framework *unique issues* (failures that only exist inside one framework's own toolchain, e.g. an `azd` deployment error can only happen on Microsoft Foundry)
-
-Ships with 30 pre-loaded cases across 8 platforms:
-
-| Category | Examples |
-|---|---|
-| Common | 401 auth failed, 429 rate limit, context overflow, network timeout, model not found |
-| AntiGravity-specific | browser control failure (Chrome/extension), artifact & task-list sync failure |
-| Claude-specific | artifact render crash, shell command not found, permission denied |
-| Codex-specific | MCP server missing, single slow upstream model causing timeout, /model switch failure |
-| Foundry-specific（Microsoft Azure AI） | azd deployment failure, trace export failure, missing agent.yaml |
-| Gemini-specific | thinking budget exceeded, image upload failed, daily quota exhausted |
-| OpenCode-specific | custom provider config not applied, session restore failure after crash |
-| Reasonix-specific | reasoning chain broken (max depth exceeded), tool loop / repeated tool calls |
-| ZCode-specific | skill not triggering, hook not firing, MCP disconnected, plugin missing |
-
-### Install
-
-Works with any skills-capable agent (Codex / Claude Code / opencode, etc.). **Copy & send just this line to your AI:**
-
-> 帮我安装 agent-troubleshoot 技能，项目地址：https://github.com/XCZ-Huazhou/agent-troubleshoot-skill ，下载放入我的技能目录并完成本机配置。
-
----
-
-**⚠️ Post-install checklist** *(reference only — do NOT copy-paste this part)*
-To help the skill debug local agent issues effectively, have your AI assistant confirm each item after install:
-
-- **Python interpreter path** (pixi / conda / system): required to run `diagnose.py` and self-tests
-- **Local config & log locations of your agents** (e.g. `~/.codex/config.toml`, `~/.claude/`): required for framework-specific diagnosis
-- **Network / proxy ports**: required when debugging network-type failures
-
-**💡 Using an agent not listed?** No need to wait for updates — ask your own AI to append cases for the new platform to `knowledge-base.json`, following the existing case format (symptoms / rootCause / solution / prevention), then register it under `frameworks`.
-
-### Usage
-
-Once the skill is enabled, it triggers automatically when keywords like "Agent error / troubleshoot / 401 / timeout" appear in the conversation.
-
-### Knowledge base format
-
-```json
-{
-  "common-issues": { "auth-errors": { "symptoms": [], "rootCause": "", "solutions": {} } },
-  "frameworks": {
-    "Codex": { "unique-issues": [ { "id": "CODEX-001" } ] }
-  },
-  "metadata": { "totalCases": 30 }
-}
-```
-
-- The knowledge base is backed up automatically (`knowledge-base.json.bak`) before every update
-- New cases with similarity > 0.8 are merged into existing ones
+[中文](#简介中文) | [English](#overview-english)
 
 ---
 
@@ -130,6 +70,66 @@ Once the skill is enabled, it triggers automatically when keywords like "Agent e
 
 - 每次更新知识库前自动备份 `knowledge-base.json.bak`
 - 新案例相似度 > 0.8 时自动合并进已有案例
+
+---
+
+## Overview (English)
+
+A **learnable troubleshooting knowledge base** for AI coding agents:
+
+1. **Diagnose**: matches error symptoms (error codes, framework names, keywords) against archived cases and returns ranked solutions with confidence scores
+2. **Self-learning**: resolved cases are auto-archived with Jaccard-based deduplication and multi-solution merging
+3. **Two-level taxonomy**: cross-framework *common issues* (e.g. 401 auth, 429 rate limit — any agent can hit them) vs per-framework *unique issues* (failures that only exist inside one framework's own toolchain, e.g. an `azd` deployment error can only happen on Microsoft Foundry)
+
+Ships with 30 pre-loaded cases across 8 platforms:
+
+| Category | Examples |
+|---|---|
+| Common | 401 auth failed, 429 rate limit, context overflow, network timeout, model not found |
+| AntiGravity-specific | browser control failure (Chrome/extension), artifact & task-list sync failure |
+| Claude-specific | artifact render crash, shell command not found, permission denied |
+| Codex-specific | MCP server missing, single slow upstream model causing timeout, /model switch failure |
+| Foundry-specific（Microsoft Azure AI） | azd deployment failure, trace export failure, missing agent.yaml |
+| Gemini-specific | thinking budget exceeded, image upload failed, daily quota exhausted |
+| OpenCode-specific | custom provider config not applied, session restore failure after crash |
+| Reasonix-specific | reasoning chain broken (max depth exceeded), tool loop / repeated tool calls |
+| ZCode-specific | skill not triggering, hook not firing, MCP disconnected, plugin missing |
+
+### Install
+
+Works with any skills-capable agent (Codex / Claude Code / opencode, etc.). **Copy & send just this line to your AI:**
+
+> 帮我安装 agent-troubleshoot 技能，项目地址：https://github.com/XCZ-Huazhou/agent-troubleshoot-skill ，下载放入我的技能目录并完成本机配置。
+
+---
+
+**⚠️ Post-install checklist** *(reference only — do NOT copy-paste this part)*
+To help the skill debug local agent issues effectively, have your AI assistant confirm each item after install:
+
+- **Python interpreter path** (pixi / conda / system): required to run `diagnose.py` and self-tests
+- **Local config & log locations of your agents** (e.g. `~/.codex/config.toml`, `~/.claude/`): required for framework-specific diagnosis
+- **Network / proxy ports**: required when debugging network-type failures
+
+**💡 Using an agent not listed?** No need to wait for updates — ask your own AI to append cases for the new platform to `knowledge-base.json`, following the existing case format (symptoms / rootCause / solution / prevention), then register it under `frameworks`.
+
+### Usage
+
+Once the skill is enabled, it triggers automatically when keywords like "Agent error / troubleshoot / 401 / timeout" appear in the conversation.
+
+### Knowledge base format
+
+```json
+{
+  "common-issues": { "auth-errors": { "symptoms": [], "rootCause": "", "solutions": {} } },
+  "frameworks": {
+    "Codex": { "unique-issues": [ { "id": "CODEX-001" } ] }
+  },
+  "metadata": { "totalCases": 30 }
+}
+```
+
+- The knowledge base is backed up automatically (`knowledge-base.json.bak`) before every update
+- New cases with similarity > 0.8 are merged into existing ones
 
 ---
 
