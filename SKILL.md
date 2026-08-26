@@ -1,14 +1,21 @@
 ---
 name: agent-troubleshoot
 description: >-
-  Agent 故障排查知识库，支持 Codex/Claude/ZCode/Gemini/Foundry 等框架的常见问题诊断。
+  Agent 故障排查知识库，支持 Codex/Claude/ZCode/Gemini/Foundry/Reasonix/AntiGravity/OpenCode 等框架的常见问题诊断。
   自动学习用户遇到的 bug，形成可检索的知识库，下次遇到相似问题时快速匹配解决方案。
   触发关键词：Agent 报错、故障排查、诊断、401、429、timeout、rate limit、context limit、MCP server、skill not triggering 等。
   A learnable troubleshooting knowledge base for AI coding agents (Codex, Claude Code,
-  ZCode, Gemini, Foundry): diagnoses common failures from error symptoms and auto-archives
-  resolved cases for future matching. Triggers: agent error, troubleshoot, diagnose,
-  401, 403, 429, timeout, rate limit, context limit, MCP server not found.
+  ZCode, Gemini, Foundry, Reasonix, AntiGravity, OpenCode): diagnoses common failures
+  from error symptoms and auto-archives resolved cases for future matching.
+  Triggers: agent error, troubleshoot, diagnose, 401, 403, 429, timeout, rate limit,
+  context limit, MCP server not found.
 ---
+
+# Agent Troubleshoot Skill - 可学习的故障排查知识库
+
+> **⚠️ 首次安装必读**：本技能安装后，请让您的 AI 助手根据**本机实际环境**完成初始化配置，
+> 包括但不限于：Python 解释器路径（pixi/conda/系统环境自选）、网络代理端口、知识库文件的
+> 本地存储路径等。不同机器的端口与环境各异，不做适配直接使用可能无法正常工作。
 
 ## 技能定位
 
@@ -440,6 +447,7 @@ python diagnose.py "Codex 报 401 错误"
 
 ## 版本历史
 
+- **v1.2.0** (2026-08-26): 新增 Reasonix/AntiGravity/OpenCode 三个主流平台支持及 6 个独有案例（总计 30 例）
 - **v1.1.1** (2026-08-26): 修复 Windows GBK 控制台 emoji 崩溃、独立运行时 utils 导入失败、自检断言边界、硬编码日期；新增 Python 环境选择说明
 - **v1.0.0** (2026-08-25): 初始版本，支持 Codex/Claude/ZCode/Gemini/Foundry 五大框架，预置 23 个常见案例
 

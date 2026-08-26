@@ -17,7 +17,7 @@ A **learnable troubleshooting knowledge base** for AI coding agents:
 2. **Self-learning**: resolved cases are auto-archived with Jaccard-based deduplication and multi-solution merging
 3. **Two-level taxonomy**: cross-framework *common issues* (e.g. 401 auth, 429 rate limit — any agent can hit them) vs per-framework *unique issues* (failures that only exist inside one framework's own toolchain, e.g. an `azd` deployment error can only happen on Microsoft Foundry)
 
-Ships with 24 pre-loaded cases:
+Ships with 30 pre-loaded cases across 8 platforms:
 
 | Category | Examples |
 |---|---|
@@ -27,6 +27,9 @@ Ships with 24 pre-loaded cases:
 | ZCode-specific | skill not triggering, hook not firing, MCP disconnected, plugin missing |
 | Gemini-specific | thinking budget exceeded, image upload failed, daily quota exhausted |
 | Foundry-specific | azd deployment failure, trace export failure, missing agent.yaml |
+| Reasonix-specific | reasoning chain broken (max depth exceeded), tool loop / repeated tool calls |
+| AntiGravity-specific | browser control failure (Chrome/extension), artifact & task-list sync failure |
+| OpenCode-specific | custom provider config not applied, session restore failure after crash |
 
 ### Install
 
@@ -39,6 +42,11 @@ Copy (or symlink) this directory into your agent's skills directory:
 ├── diagnose.py           # CLI diagnosis entry
 └── utils/matcher.py      # keyword extraction / Jaccard matching / dedup
 ```
+
+> **⚠️ Post-install setup (required)**: After installing, ask **your own AI assistant** to
+> adapt this skill to your machine — Python interpreter path (pixi / conda / system),
+> network proxy ports, local knowledge-base storage path, etc. These differ on every machine;
+> using the skill unadapted may prevent it from working correctly.
 
 ### Usage
 
@@ -58,7 +66,7 @@ In skill-capable agents it triggers automatically on keywords like "agent error"
   "frameworks": {
     "Codex": { "unique-issues": [ { "id": "CODEX-001" } ] }
   },
-  "metadata": { "totalCases": 24 }
+  "metadata": { "totalCases": 30 }
 }
 ```
 
@@ -75,7 +83,7 @@ In skill-capable agents it triggers automatically on keywords like "agent error"
 2. **自动学习**：问题解决后自动归档新案例到知识库（Jaccard 语义去重、多解法合并）
 3. **两级分类**：「共同问题」是任何框架都可能遇到的（如 401 认证失败、429 限流）；「独有问题」是只在某个框架自身工具链里才存在的故障（例如 `azd` 部署错误只可能发生在微软 Foundry 上）
 
-预置 24 个案例：
+预置 8 个平台共 30 个案例：
 
 | 类别 | 示例 |
 |---|---|
@@ -85,10 +93,17 @@ In skill-capable agents it triggers automatically on keywords like "agent error"
 | ZCode 独有 | 技能不触发、hook 失效、MCP 断连、插件缺失 |
 | Gemini 独有 | 思考预算耗尽、图片上传失败、日配额用尽 |
 | Foundry 独有 | azd 部署失败、trace 导出失败、missing agent.yaml |
+| Reasonix 独有 | 推理链断裂（深度超限）、工具循环调用 |
+| AntiGravity 独有 | 浏览器控制失败（Chrome/扩展）、工件与任务列表同步失败 |
+| OpenCode 独有 | 自定义 provider 配置不生效、崩溃后会话恢复失败 |
 
 ### 安装
 
 将本目录复制（或 symlink/junction）到 Agent 的技能目录 `~/.agents/skills/agent-troubleshoot/` 即可。
+
+> **⚠️ 安装后配置（必读）**：安装完成后，请让**您自己的 AI 助手**根据本机实际环境完成适配——
+> 包括 Python 解释器路径（pixi / conda / 系统环境自选）、网络代理端口、知识库本地存储路径等。
+> 每台机器的端口与环境各不相同，未经适配直接使用可能无法正常工作。
 
 ### 使用
 
@@ -111,7 +126,7 @@ python utils/matcher.py
   "frameworks": {
     "Codex": { "unique-issues": [ { "id": "CODEX-001" } ] }
   },
-  "metadata": { "totalCases": 24 }
+  "metadata": { "totalCases": 30 }
 }
 ```
 

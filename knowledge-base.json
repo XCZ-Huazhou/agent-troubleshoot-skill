@@ -327,18 +327,106 @@
           "prevention": "在项目根目录创建 .foundry/agent.yaml 配置"
         }
       ]
+    },
+    "Reasonix": {
+      "description": "Reasonix AI Agent Framework - 多步推理编排框架",
+      "unique-issues": [
+        {
+          "id": "REASONIX-001",
+          "symptoms": [
+            "reasoning failed",
+            "推理链断裂",
+            "max reasoning depth",
+            "推理深度超限"
+          ],
+          "rootCause": "推理步骤超过最大深度限制，或任务规划陷入循环展开",
+          "solution": "增大 max_reasoning_depth 配置，或将大任务拆解为阶段性子目标后分批执行",
+          "prevention": "为复杂任务预设阶段目标与终止条件，避免开放式循环规划"
+        },
+        {
+          "id": "REASONIX-002",
+          "symptoms": [
+            "tool loop",
+            "工具循环调用",
+            "重复调用同一工具"
+          ],
+          "rootCause": "工具返回结果未正确回注推理上下文，触发无意义重试死循环",
+          "solution": "检查工具结果回注配置是否生效，开启 loop detection 后重跑任务",
+          "prevention": "为每个工具调用设置次数上限与超时熔断"
+        }
+      ]
+    },
+    "AntiGravity": {
+      "description": "Google Antigravity - Gemini 系 Agentic 开发平台/IDE",
+      "unique-issues": [
+        {
+          "id": "ANTIGRAVITY-001",
+          "symptoms": [
+            "browser control failed",
+            "浏览器控制失败",
+            "chrome 扩展缺失",
+            "browser tool unavailable"
+          ],
+          "rootCause": "浏览器控制依赖的 Chrome 未安装、版本过旧或配套扩展缺失",
+          "solution": "安装/更新 Chrome 与 Antigravity 浏览器扩展，重启 IDE 后重新授权浏览器控制权限",
+          "prevention": "保持 Chrome 自动更新，定期检查扩展启用状态"
+        },
+        {
+          "id": "ANTIGRAVITY-002",
+          "symptoms": [
+            "artifact sync failed",
+            "工件同步失败",
+            "task list 不同步",
+            "workspace 加载失败"
+          ],
+          "rootCause": "Artifact/任务面板与云端工作区同步中断（网络波动或登录态过期）",
+          "solution": "重新登录账号，确认网络出口可访问 Google API 域名，然后手动触发同步",
+          "prevention": "为 Google API 相关域名配置稳定网络出口，避免频繁切换代理节点"
+        }
+      ]
+    },
+    "OpenCode": {
+      "description": "opencode - 终端 AI 编码 Agent（支持自定义 Provider 与本地转发）",
+      "unique-issues": [
+        {
+          "id": "OPENCODE-001",
+          "symptoms": [
+            "provider 不生效",
+            "模型切换无效",
+            "provider not found",
+            "自定义 provider 失效"
+          ],
+          "rootCause": "opencode.json 中 provider/base_url 配置层级或 ID 大小写写错，或修改后未重启会话导致旧配置仍在内存",
+          "solution": "核对配置文件中 provider 定义层级与 ID 拼写，保存后重启会话；用 /models 列表确认目标模型已被加载",
+          "prevention": "每次改动配置后重启会话验证；将常用 provider 配置纳入版本管理"
+        },
+        {
+          "id": "OPENCODE-002",
+          "symptoms": [
+            "session 恢复失败",
+            "会话丢失",
+            "context 恢复失败"
+          ],
+          "rootCause": "会话进程异常退出导致状态文件损坏或残留锁文件未释放",
+          "solution": "结束残留进程后用 /resume 选择最近的可用快照恢复；仍失败则删除损坏的锁文件后重启",
+          "prevention": "长任务执行前先 /compact 压缩上下文，重要结论及时落盘到笔记"
+        }
+      ]
     }
   },
   "metadata": {
-    "version": "1.1.0",
+    "version": "1.2.0",
     "lastUpdated": "2026-08-26",
-    "totalCases": 24,
+    "totalCases": 30,
     "frameworks": [
       "Codex",
       "Claude",
       "ZCode",
       "Gemini",
-      "Foundry"
+      "Foundry",
+      "Reasonix",
+      "AntiGravity",
+      "OpenCode"
     ]
   }
 }

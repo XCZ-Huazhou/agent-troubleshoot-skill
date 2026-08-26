@@ -156,21 +156,40 @@ def jaccard_similarity(set_a: set, set_b: set) -> float:
     return intersection / union if union > 0 else 0.0
 
 
+def _token_set(keywords: List[str]) -> set:
+    """
+    将关键词列表展开为可比对的词元集合：
+    保留原始短语，同时把短语内的英文/数字单词也加入集合，
+    使 "browser control failed" 这类多词症状可以与用户输入的单词互相匹配。
+    """
+    tokens = set(normalize_keywords(keywords))
+    expanded = set(tokens)
+    for t in tokens:
+        for w in re.findall(r"[a-zA-Z0-9]+", t):
+            if len(w) > 2:
+                expanded.add(w.lower())
+    return expanded
+
+
+# 命中框架独有分类时的置信度加成
+FRAMEWORK_BONUS = 0.25
+
+
 def calculate_similarity(keywords_a: List[str], keywords_b: List[str]) -> float:
     """
     计算两组关键词的语义相似度
-    
+
     Args:
         keywords_a: 关键词列表 A
         keywords_b: 关键词列表 B
-        
+
     Returns:
         相似度分数 (0-1)
     """
-    # 标准化
-    normalized_a = set(normalize_keywords(keywords_a))
-    normalized_b = set(normalize_keywords(keywords_b))
-    
+    # 标准化并双向拆词
+    normalized_a = _token_set(keywords_a)
+    normalized_b = _token_set(keywords_b)
+
     return jaccard_similarity(normalized_a, normalized_b)
 
 
@@ -219,7 +238,9 @@ def match_issue(
         for issue in unique_issues:
             issue_symptoms = issue.get("symptoms", [])
             score = calculate_similarity(user_symptoms, issue_symptoms)
-            
+            # 用户输入已识别出该框架，命中其独有案例时给予置信度加成
+            score = min(1.0, score + FRAMEWORK_BONUS)
+
             if score > best_score and score >= threshold:
                 best_score = score
                 best_match = {
