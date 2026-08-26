@@ -204,3 +204,18 @@ Once the skill is enabled, it triggers automatically when keywords like "Agent e
 ## License
 
 MIT
+
+---
+
+# ⚠️ 注明出处 · ATTRIBUTION REQUIRED
+
+> ## 🔴 二次修改或引用，必须注明出处！
+>
+> ### 出处 / Source
+>
+> **[XCZ-Huazhou / agent-troubleshoot-skill](https://github.com/XCZ-Huazhou/agent-troubleshoot-skill)**
+>
+> When modifying or citing this skill, you **MUST** attribute the source:
+>
+> **XCZ-Huazhou / agent-troubleshoot-skill**
+> https://github.com/XCZ-Huazhou/agent-troubleshoot-skill
