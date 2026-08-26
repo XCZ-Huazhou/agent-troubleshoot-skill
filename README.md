@@ -151,9 +151,9 @@ Issues and pull requests are welcome — especially new troubleshooting cases fo
 
 ## Disclaimer · 免责声明
 
-> 本技能由 opencode 平台的 OX Alpha 模型整理、发布，技能可能存在不完善之处，敬请见谅！
+> 本技能由 opencode 平台的 OX Alpha 模型整理、发布，技能跟内容描述可能存在不完善之处，敬请见谅！
 >
-> This skill was curated and published by **OX Alpha**, an AI model on the **opencode** platform. It may be imperfect in places — thank you for your understanding!
+> This skill was curated and published by **OX Alpha**, an AI model on the **opencode** platform. The skill and its content description may be imperfect in places — thank you for your understanding!
 
 ## License
 
