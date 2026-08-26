@@ -49,12 +49,10 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, Op
 ---
 
 **⚠️ 安装后初始化** *（以下是说明文字，无需复制发送）*
-为了更好地让该技能处理本机遇到的各种 agent bug，安装完成后请让 AI Agent 做两件事：
+为了更好地让该技能处理本机遇到的各种 agent bug，安装完成后，它会自动做两件事：
 
-- **认识你的 Python 环境**：自动扫描本机所有可用环境（pixi / conda / 系统等），列成清单由你挑一个作为默认——运行 `diagnose.py` 与自检所必需
-- **摸清你的 Agent 配置**：自动读取各 Agent 的设置与日志位置（如 `~/.codex/config.toml`、`~/.claude/`），以及上网代理端口，供后续排查使用
-
-全程只需你在清单里挑一个 Python 环境，其余不用管。
+- **确认Python的运行环境**：自动全盘智能扫描所有可用环境（pixi / conda / 系统等），**弹出点击式选择框**让你挑一个作为默认——运行`diagnose.py`与自检所必需
+- 摸清你的Agent配置：自动读取各Agent的设置与日志位置（如 `~/.codex/config.toml`、`~/.claude/`），以及上网代理端口，供后续排查使用
 
 **💡 列表里没有你的 Agent？** 无需等待更新——直接让您的 AI 大模型参照知识库现有案例的四个字段（症状 symptoms、根因 rootCause、解决方案 solution、预防 prevention）自行补充新平台的故障案例，并在 `frameworks` 中登记即可。
 
@@ -133,12 +131,10 @@ Works with any skills-capable agent (Codex / Claude Code / OpenCode, etc.). **Co
 ---
 
 **⚠️ Post-install init** *(reference only — do NOT copy-paste this part)*
-To help the skill debug local agent issues effectively, have your AI Agent do two things after install:
+To help the skill debug local agent issues effectively, after install it will automatically do two things:
 
-- **Get to know your Python environments**: it scans every available environment on your machine (pixi / conda / system), lists them in a picker for you to choose the default — needed to run `diagnose.py` and self-tests
-- **Learn your agent setup**: it automatically reads each agent's config/log locations (e.g. `~/.codex/config.toml`, `~/.claude/`) and your proxy ports for later troubleshooting
-
-Picking one Python environment from the list is all you do.
+- **Confirm the Python runtime**: full smart scan of every available environment (pixi / conda / system), then a **click-to-pick dialog** pops up for you to choose the default — needed to run `diagnose.py` and self-tests
+- **Learn your agent setup**: automatically reads each agent's config/log locations (e.g. `~/.codex/config.toml`, `~/.claude/`) and your proxy ports for later troubleshooting
 
 **💡 Using an agent not listed?** No need to wait for updates — ask your own AI to append cases for the new platform to `knowledge-base.json`, following the existing case format (symptoms / rootCause / solution / prevention), then register it under `frameworks`.
 
