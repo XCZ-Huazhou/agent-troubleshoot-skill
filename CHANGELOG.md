@@ -1,17 +1,21 @@
-# Changelog
+﻿# Changelog
 
-All notable changes to this project will be documented in this file.
+## v1.0.1 (2026-08-27)
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+### 新增
+- **避坑指南**：知识库新增 wrongSolutions 字段，记录试过但没用的方法，帮你少走弯路
+- 诊断报告新增「这些方法试过没用（避坑）」板块
+- 4个典型案例新增错误方案记录（COMMON-AUTH-001、CODEX-005、CLAUDE-001、OPENCODE-001）
 
-## [1.0.0] - 2026-08-26
+### 变更
+- 核心功能列表新增「避坑指南」
+- 知识库格式文档更新，说明 wrongSolutions 字段用法
 
-### Added
+## v1.0.0 (2026-08-26)
 
-- Troubleshooting knowledge base covering 8 platforms: Antigravity, Claude, Codex, Foundry, Gemini, OpenCode, Reasonix, ZCode
-- 30 pre-loaded cases (common issues + framework-specific issues)
-- Self-learning workflow: resolved cases auto-archived with Jaccard-based deduplication
-- CLI diagnosis tool (`diagnose.py`) with confidence-scored matches
-- Bilingual documentation (English / 简体中文)
-- Post-install setup notice: adapt Python interpreter, proxy ports and paths to your machine
+### 初始发布
+- 预置 8 个平台共 30 个故障案例
+- 支持语义匹配诊断、两级分类（共同问题/独有问题）
+- 用户确认后才收录的守门机制
+- Jaccard 语义去重 + 多解法合并
+- pick_python.py 全盘智能扫描 + 点击式选择框

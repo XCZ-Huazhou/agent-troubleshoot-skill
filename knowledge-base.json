@@ -2,7 +2,13 @@
   "common-issues": {
     "auth-errors": {
       "id": "COMMON-AUTH-001",
-      "symptoms": ["401", "Unauthorized", "Authentication failed", "认证失败", "凭证过期"],
+      "symptoms": [
+        "401",
+        "Unauthorized",
+        "Authentication failed",
+        "认证失败",
+        "凭证过期"
+      ],
       "rootCause": "API 凭证过期或未配置",
       "solutions": {
         "Codex": "执行 `codex login` 或设置环境变量 OPENAI_API_KEY",
@@ -12,16 +18,27 @@
         "ZCode": "检查 zcode auth status 并执行 zcode auth refresh"
       },
       "wrongSolutions": [
-        {"method": "反复重试请求", "whyItFailed": "凭证过期后重试多少次结果都一样，必须重新获取凭证"},
-        {"method": "重启 Agent 工具", "whyItFailed": "问题在凭证而非进程，重启不能刷新已过期的 token"}
+        {
+          "method": "反复重试请求",
+          "whyItFailed": "凭证过期后重试多少次结果都一样，必须重新获取凭证"
+        },
+        {
+          "method": "重启 Agent 工具",
+          "whyItFailed": "问题在凭证而非进程，重启不能刷新已过期的 token"
+        }
       ],
       "diagnosis": "运行对应框架的 auth status 命令检查登录状态",
       "prevention": "使用 credential manager 保存 token，或设置环境变量永久生效"
     },
-    
     "rate-limit": {
       "id": "COMMON-RATE-001",
-      "symptoms": ["429", "Too Many Requests", "rate limit", "速率限制", "配额耗尽"],
+      "symptoms": [
+        "429",
+        "Too Many Requests",
+        "rate limit",
+        "速率限制",
+        "配额耗尽"
+      ],
       "rootCause": "API 调用频率超过配额",
       "solutions": {
         "all": "等待 60 秒后重试，或升级到更高配额计划"
@@ -35,10 +52,15 @@
       "diagnosis": "检查当前 RPM/TPM 使用情况（访问 provider dashboard）",
       "prevention": "实现请求队列，添加 exponential backoff 重试机制"
     },
-    
     "context-overflow": {
       "id": "COMMON-CONTEXT-001",
-      "symptoms": ["context limit", "token overflow", "maximum context length", "上下文溢出", "token 超限"],
+      "symptoms": [
+        "context limit",
+        "token overflow",
+        "maximum context length",
+        "上下文溢出",
+        "token 超限"
+      ],
       "rootCause": "输入 + 输出超过模型上下文窗口",
       "solutions": {
         "all": "使用 truncation 策略，切换到更大上下文模型，或分批次处理"
@@ -52,10 +74,15 @@
       "diagnosis": "统计当前对话 token 数（使用 tiktoken 或框架自带工具）",
       "prevention": "启用自动摘要，定期清理历史对话，使用 prompt 优化减少冗余"
     },
-    
     "network-timeout": {
       "id": "COMMON-NET-001",
-      "symptoms": ["timeout", "connection timed out", "network error", "连接超时", "网络错误"],
+      "symptoms": [
+        "timeout",
+        "connection timed out",
+        "network error",
+        "连接超时",
+        "网络错误"
+      ],
       "rootCause": "网络连接问题或 API 服务器响应慢",
       "solutions": {
         "all": "检查网络代理配置，增加 timeout 参数，使用 CDN 节点"
@@ -69,10 +96,14 @@
       "diagnosis": "ping API endpoint，检查 DNS 解析，验证代理配置",
       "prevention": "设置合理的 timeout 和 retry 策略，使用本地缓存减少请求"
     },
-    
     "model-not-found": {
       "id": "COMMON-MODEL-001",
-      "symptoms": ["model not found", "unsupported model", "模型不存在", "不支持的模型"],
+      "symptoms": [
+        "model not found",
+        "unsupported model",
+        "模型不存在",
+        "不支持的模型"
+      ],
       "rootCause": "模型名称拼写错误或该模型在当前区域不可用",
       "solutions": {
         "all": "检查模型名称拼写，验证该模型在所在区域的可用性"
@@ -87,231 +118,339 @@
       "prevention": "使用模型别名配置，定期同步可用模型列表"
     }
   },
-  
   "frameworks": {
     "Codex": {
       "description": "OpenAI Codex CLI - 代码开发专用 Agent",
       "unique-issues": [
         {
           "id": "CODEX-001",
-          "symptoms": ["mcp-server not found", "MCP tools unavailable", "MCP 工具不可用"],
+          "symptoms": [
+            "mcp-server not found",
+            "MCP tools unavailable",
+            "MCP 工具不可用"
+          ],
           "rootCause": "MCP server 未正确安装或配置",
           "solution": "运行 `codex mcp install` 并重启 VS Code，或检查 MCP 配置文件路径",
           "prevention": "定期运行 codex mcp update 更新 MCP server",
-          "references": ["https://github.com/openai/codex/blob/main/docs/mcp.md"]
+          "references": [
+            "https://github.com/openai/codex/blob/main/docs/mcp.md"
+          ]
         },
         {
           "id": "CODEX-002",
-          "symptoms": ["review failed", "code review timeout", "代码审查超时"],
+          "symptoms": [
+            "review failed",
+            "code review timeout",
+            "代码审查超时"
+          ],
           "rootCause": "大文件审查超时或内存不足",
           "solution": "使用 /review --fast 模式，或分割文件分批审查",
           "prevention": "对超大文件使用增量审查策略"
         },
         {
           "id": "CODEX-003",
-          "symptoms": ["/model command failed", "模型切换失败"],
+          "symptoms": [
+            "/model command failed",
+            "模型切换失败"
+          ],
           "rootCause": "模型配置未加载或 API key 权限不足",
           "solution": "运行 codex auth refresh 然后重试 /model 命令",
           "prevention": "在.codex/settings.local.json 中预设默认模型"
         },
         {
           "id": "CODEX-004",
-          "symptoms": ["git integration failed", "git 命令执行失败"],
+          "symptoms": [
+            "git integration failed",
+            "git 命令执行失败"
+          ],
           "rootCause": "Git 未安装或 PATH 未配置",
           "solution": "安装 Git 并添加到系统 PATH，重启终端",
           "prevention": "运行 codex doctor 检查 Git 配置"
         },
         {
           "id": "CODEX-005",
-          "symptoms": ["codex 连接超时", "无响应一直转圈", "单模型超时其他模型正常", "第三方中转模型超时", "ccswitch codex timeout"],
+          "symptoms": [
+            "codex 连接超时",
+            "无响应一直转圈",
+            "单模型超时其他模型正常",
+            "第三方中转模型超时",
+            "ccswitch codex timeout"
+          ],
           "rootCause": "第三方供应商(如 CSTai uni-api.cstcloud.cn)特定模型上游响应极慢(deepseek-v4-flash 最小请求 87 秒)，超过 Codex 等待时间；链路本身(cc-switch 本地代理 127.0.0.1:15721)正常。注意：15721 是 cc-switch 转发口，与用户自建代理端口(如 Clash 17891)无关",
           "solution": "1) 对本地代理端口逐模型发最小请求(stream 与非 stream 各一次)定位是哪个模型慢；2) 切换到响应正常的模型(如 qwen3.5)；3) 检查 cc-switch 日志中 forwarder 记录是否有转发后无完成记录的条目；4) 慢模型等上游恢复后再用",
           "wrongSolutions": [
-            {"method": "反复检查 Clash 代理端口 17891", "whyItFailed": "代理本身正常，问题在上游模型响应慢，不在本地代理"},
-            {"method": "重启 cc-switch 服务", "whyItFailed": "cc-switch 转发链路无故障，重启不能加速上游响应"},
-            {"method": "切换到其他第三方中转", "whyItFailed": "如果中转同一上游，慢模型依然慢；需确认中转背后的上游是否相同"}
+            {
+              "method": "反复检查 Clash 代理端口 17891",
+              "whyItFailed": "代理本身正常，问题在上游模型响应慢，不在本地代理"
+            },
+            {
+              "method": "重启 cc-switch 服务",
+              "whyItFailed": "cc-switch 转发链路无故障，重启不能加速上游响应"
+            },
+            {
+              "method": "切换到其他第三方中转",
+              "whyItFailed": "如果中转同一上游，慢模型依然慢；需确认中转背后的上游是否相同"
+            }
           ],
           "prevention": "在 cc-switch 中开启 failover；遇到超时先做分模型最小请求测试再排查网络/端口，避免误判为代理配置问题"
         }
       ]
     },
-    
     "Claude": {
       "description": "Anthropic Claude Code - Agent 编程工具",
       "unique-issues": [
         {
           "id": "CLAUDE-001",
-          "symptoms": ["artifact render failed", "预览无法加载", "artifact 崩溃"],
+          "symptoms": [
+            "artifact render failed",
+            "预览无法加载",
+            "artifact 崩溃"
+          ],
           "rootCause": "Claude artifact 渲染器崩溃或浏览器兼容性问题",
           "solution": "刷新对话页面，清理浏览器缓存，或切换到纯文本模式",
           "wrongSolutions": [
-            {"method": "重新安装 Claude Code", "whyItFailed": "artifact 渲染在浏览器端，与本地安装无关"},
-            {"method": "清除 Claude 账号缓存", "whyItFailed": "artifact 是浏览器渲染问题，不是账号数据问题"}
+            {
+              "method": "重新安装 Claude Code",
+              "whyItFailed": "artifact 渲染在浏览器端，与本地安装无关"
+            },
+            {
+              "method": "清除 Claude 账号缓存",
+              "whyItFailed": "artifact 是浏览器渲染问题，不是账号数据问题"
+            }
           ],
           "prevention": "使用 Chromium 内核浏览器，禁用冲突的浏览器扩展"
         },
         {
           "id": "CLAUDE-002",
-          "symptoms": ["bash: command not found", "shell 命令执行失败"],
+          "symptoms": [
+            "bash: command not found",
+            "shell 命令执行失败"
+          ],
           "rootCause": "shell 环境未正确初始化或命令不在 PATH",
           "solution": "检查 ~/.bashrc 或 ~/.zshrc 配置，确保命令可执行",
           "prevention": "在 claude/settings 中配置默认 shell 路径"
         },
         {
           "id": "CLAUDE-003",
-          "symptoms": ["permission denied", "无权访问文件"],
+          "symptoms": [
+            "permission denied",
+            "无权访问文件"
+          ],
           "rootCause": "文件系统权限不足或沙箱限制",
           "solution": "使用 chmod 修改文件权限，或移动到可访问目录",
           "prevention": "在允许的工作目录内操作，避免访问系统目录"
         }
       ]
     },
-    
     "ZCode": {
       "description": "ZCode Framework - 本地 Agent 编排框架",
       "unique-issues": [
         {
           "id": "ZCODE-001",
-          "symptoms": ["skill not triggering", "技能未自动激活", "trigger failed"],
+          "symptoms": [
+            "skill not triggering",
+            "技能未自动激活",
+            "trigger failed"
+          ],
           "rootCause": "技能触发词匹配度不足或 SKILL.md 格式错误",
           "solution": "手动调用 /skill-name 或调整 SKILL.md 的 description 字段增强匹配",
           "prevention": "使用 skill-trigger-check 技能验证触发条件"
         },
         {
           "id": "ZCODE-002",
-          "symptoms": ["hook not firing", "钩子未触发"],
+          "symptoms": [
+            "hook not firing",
+            "钩子未触发"
+          ],
           "rootCause": "Hook 配置文件中 matcher 不匹配或脚本无执行权限",
           "solution": "检查 .zcode/hooks/ 下的钩子配置，运行 chmod +x 添加执行权限",
           "prevention": "使用 zcode hook test 命令验证钩子触发"
         },
         {
           "id": "ZCODE-003",
-          "symptoms": ["MCP server disconnected", "MCP 服务器断开"],
+          "symptoms": [
+            "MCP server disconnected",
+            "MCP 服务器断开"
+          ],
           "rootCause": "MCP server 进程崩溃或网络端口被占用",
           "solution": "重启 MCP server：zcode mcp restart，或更换端口配置",
           "prevention": "检查 MCP server 日志，避免端口冲突"
         },
         {
           "id": "ZCODE-004",
-          "symptoms": ["plugin not found", "插件未安装"],
+          "symptoms": [
+            "plugin not found",
+            "插件未安装"
+          ],
           "rootCause": "插件市场配置错误或网络下载失败",
           "solution": "检查已知市场配置，运行 zcode plugin reinstall 重新安装",
           "prevention": "离线备份常用插件，使用本地镜像源"
         }
       ]
     },
-    
     "Gemini": {
       "description": "Google Gemini API - 多模态 AI 服务",
       "unique-issues": [
         {
           "id": "GEMINI-001",
-          "symptoms": ["thinking budget exceeded", "THINKING_HIGH 失败", "思考预算耗尽"],
+          "symptoms": [
+            "thinking budget exceeded",
+            "THINKING_HIGH 失败",
+            "思考预算耗尽"
+          ],
           "rootCause": "思考模式 token 预算耗尽",
           "solution": "切换到 THINKING_MINIMAL 或减少复杂推理任务",
           "prevention": "对于简单任务使用 THINKING_DISABLED 模式"
         },
         {
           "id": "GEMINI-002",
-          "symptoms": ["image upload failed", "图片上传失败", "vision model timeout"],
+          "symptoms": [
+            "image upload failed",
+            "图片上传失败",
+            "vision model timeout"
+          ],
           "rootCause": "图片文件过大或 vision 模型处理超时",
           "solution": "压缩图片到 5MB 以下，或切换到 gemini-3.5-flash-lite（更快）",
           "prevention": "使用 base64 编码分片上传，设置合理的 timeout"
         },
         {
           "id": "GEMINI-003",
-          "symptoms": [" quota exceeded", "配额超出", "daily limit reached"],
+          "symptoms": [
+            " quota exceeded",
+            "配额超出",
+            "daily limit reached"
+          ],
           "rootCause": "Gemini API 日配额用尽",
           "solution": "申请配额提升 (https://makersuite.google.com/app/apikey)，或切换到付费计划",
           "prevention": "监控每日使用量，设置配额告警"
         }
       ]
     },
-    
     "Foundry": {
       "description": "Microsoft Foundry - Azure AI Agent 平台",
       "unique-issues": [
         {
           "id": "FOUNDRY-001",
-          "symptoms": ["azd ai agent failed", "Azure deployment error", "Azure 部署失败"],
+          "symptoms": [
+            "azd ai agent failed",
+            "Azure deployment error",
+            "Azure 部署失败"
+          ],
           "rootCause": "Azure 订阅权限不足或配额耗尽",
           "solution": "检查 azd auth login 并验证订阅配额，使用 azd quota request 申请提升",
           "prevention": "定期检查 Azure 订阅配额使用情况"
         },
         {
           "id": "FOUNDRY-002",
-          "symptoms": ["trace export failed", "Application Insights 上传失败"],
+          "symptoms": [
+            "trace export failed",
+            "Application Insights 上传失败"
+          ],
           "rootCause": "Application Insights 配置错误或网络问题",
           "solution": "验证 APPINSIGHTS_CONNECTION_STRING 配置，检查防火墙规则",
           "prevention": "本地 traces 先导出到文件再批量上传"
         },
         {
           "id": "FOUNDRY-003",
-          "symptoms": ["agent.yaml not found", "agent 配置缺失"],
+          "symptoms": [
+            "agent.yaml not found",
+            "agent 配置缺失"
+          ],
           "rootCause": "Foundry 项目未初始化或 agent.yaml 路径错误",
           "solution": "运行 azd ai agent init 初始化项目，检查 YAML 路径",
           "prevention": "在项目根目录创建 .foundry/agent.yaml 配置"
         }
       ]
     },
-
     "Reasonix": {
       "description": "Reasonix AI Agent Framework - 多步推理编排框架",
       "unique-issues": [
         {
           "id": "REASONIX-001",
-          "symptoms": ["reasoning failed", "推理链断裂", "max reasoning depth", "推理深度超限"],
+          "symptoms": [
+            "reasoning failed",
+            "推理链断裂",
+            "max reasoning depth",
+            "推理深度超限"
+          ],
           "rootCause": "推理步骤超过最大深度限制，或任务规划陷入循环展开",
           "solution": "增大 max_reasoning_depth 配置，或将大任务拆解为阶段性子目标后分批执行",
           "prevention": "为复杂任务预设阶段目标与终止条件，避免开放式循环规划"
         },
         {
           "id": "REASONIX-002",
-          "symptoms": ["tool loop", "工具循环调用", "重复调用同一工具"],
+          "symptoms": [
+            "tool loop",
+            "工具循环调用",
+            "重复调用同一工具"
+          ],
           "rootCause": "工具返回结果未正确回注推理上下文，触发无意义重试死循环",
           "solution": "检查工具结果回注配置是否生效，开启 loop detection 后重跑任务",
           "prevention": "为每个工具调用设置次数上限与超时熔断"
         }
       ]
     },
-
     "Antigravity": {
       "description": "Google Antigravity - Gemini 系 Agentic 开发平台/IDE",
       "unique-issues": [
         {
           "id": "ANTIGRAVITY-001",
-          "symptoms": ["browser control failed", "浏览器控制失败", "chrome 扩展缺失", "browser tool unavailable"],
+          "symptoms": [
+            "browser control failed",
+            "浏览器控制失败",
+            "chrome 扩展缺失",
+            "browser tool unavailable"
+          ],
           "rootCause": "浏览器控制依赖的 Chrome 未安装、版本过旧或配套扩展缺失",
           "solution": "安装/更新 Chrome 与 Antigravity 浏览器扩展，重启 IDE 后重新授权浏览器控制权限",
           "prevention": "保持 Chrome 自动更新，定期检查扩展启用状态"
         },
         {
           "id": "ANTIGRAVITY-002",
-          "symptoms": ["artifact sync failed", "工件同步失败", "task list 不同步", "workspace 加载失败"],
+          "symptoms": [
+            "artifact sync failed",
+            "工件同步失败",
+            "task list 不同步",
+            "workspace 加载失败"
+          ],
           "rootCause": "Artifact/任务面板与云端工作区同步中断（网络波动或登录态过期）",
           "solution": "重新登录账号，确认网络出口可访问 Google API 域名，然后手动触发同步",
           "prevention": "为 Google API 相关域名配置稳定网络出口，避免频繁切换代理节点"
         }
       ]
     },
-
     "OpenCode": {
       "description": "OpenCode - 终端 AI 编码 Agent（支持自定义 Provider 与本地转发）",
       "unique-issues": [
         {
           "id": "OPENCODE-001",
-          "symptoms": ["provider 不生效", "模型切换无效", "provider not found", "自定义 provider 失效"],
+          "symptoms": [
+            "provider 不生效",
+            "模型切换无效",
+            "provider not found",
+            "自定义 provider 失效"
+          ],
           "rootCause": "opencode.json 中 provider/base_url 配置层级或 ID 大小写写错，或修改后未重启会话导致旧配置仍在内存",
           "solution": "核对配置文件中 provider 定义层级与 ID 拼写，保存后重启会话；用 /models 列表确认目标模型已被加载",
           "wrongSolutions": [
-            {"method": "反复切换模型", "whyItFailed": "配置本身有误，切换模型不能修复配置错误"},
-            {"method": "重启 opencode 进程", "whyItFailed": "如果配置文件内容仍错误，重启后问题依旧"}
+            {
+              "method": "反复切换模型",
+              "whyItFailed": "配置本身有误，切换模型不能修复配置错误"
+            },
+            {
+              "method": "重启 opencode 进程",
+              "whyItFailed": "如果配置文件内容仍错误，重启后问题依旧"
+            }
           ],
           "prevention": "每次改动配置后重启会话验证；将常用 provider 配置纳入版本管理"
         },
         {
           "id": "OPENCODE-002",
-          "symptoms": ["session 恢复失败", "会话丢失", "context 恢复失败"],
+          "symptoms": [
+            "session 恢复失败",
+            "会话丢失",
+            "context 恢复失败"
+          ],
           "rootCause": "会话进程异常退出导致状态文件损坏或残留锁文件未释放",
           "solution": "结束残留进程后用 /resume 选择最近的可用快照恢复；仍失败则删除损坏的锁文件后重启",
           "prevention": "长任务执行前先 /compact 压缩上下文，重要结论及时落盘到笔记"
@@ -319,11 +458,19 @@
       ]
     }
   },
-  
   "metadata": {
-    "version": "1.0.0",
-    "lastUpdated": "2026-08-26",
+    "version": "1.0.1",
+    "lastUpdated": "2026-08-27",
     "totalCases": 30,
-    "frameworks": ["Antigravity", "Claude", "Codex", "Foundry", "Gemini", "OpenCode", "Reasonix", "ZCode"]
+    "frameworks": [
+      "Antigravity",
+      "Claude",
+      "Codex",
+      "Foundry",
+      "Gemini",
+      "OpenCode",
+      "Reasonix",
+      "ZCode"
+    ]
   }
 }
