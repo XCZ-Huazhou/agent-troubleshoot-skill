@@ -52,6 +52,11 @@ Copy (or symlink) this directory into your agent's skills directory:
 > network proxy ports, local knowledge-base storage path, etc. These differ on every machine;
 > using the skill unadapted may prevent it from working correctly.
 
+> 💡 **Using an agent not listed above?**
+> No need to wait for updates — just ask your own AI assistant to append cases for the new
+> platform to `knowledge-base.json`, following the existing case format
+> (symptoms / rootCause / solution / prevention), then register it under `frameworks`.
+
 ### Usage
 
 ```bash
@@ -108,6 +113,11 @@ In skill-capable agents it triggers automatically on keywords like "agent error"
 > **⚠️ 安装后配置（必读）**：安装完成后，请让**您自己的 AI 助手**根据本机实际环境完成适配——
 > 包括 Python 解释器路径（pixi / conda / 系统环境自选）、网络代理端口、知识库本地存储路径等。
 > 每台机器的端口与环境各不相同，未经适配直接使用可能无法正常工作。
+
+> 💡 **列表里没有你的 Agent？**
+> 无需等待更新——直接让您的 AI 大模型参照知识库现有案例格式
+> （symptoms / rootCause / solution / prevention）自行补充新平台的故障案例，
+> 并在 `frameworks` 中登记即可。
 
 ### 使用
 
