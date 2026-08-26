@@ -37,15 +37,11 @@ Ships with 30 pre-loaded cases across 8 platforms:
 
 ### Install
 
-Copy (or symlink) this directory into your agent's skills directory:
+**Easiest · 一句话安装** — just tell your AI agent (Codex / Claude Code / opencode):
 
-```
-~/.agents/skills/agent-troubleshoot/
-├── SKILL.md              # skill definition & workflow
-├── knowledge-base.json   # knowledge base (keeps growing)
-├── diagnose.py           # CLI diagnosis entry
-└── utils/matcher.py      # keyword extraction / Jaccard matching / dedup
-```
+> 帮我安装 agent-troubleshoot 技能，项目地址：https://github.com/cjc505/agent-troubleshoot-skill ，下载放入我的技能目录并完成本机配置。
+
+**Manual · 手动安装**: grab `agent-troubleshoot-skill-v1.0.0.zip` from [Releases](https://github.com/cjc505/agent-troubleshoot-skill/releases) → extract to `~/.agents/skills/agent-troubleshoot/`.
 
 > **⚠️ Post-install setup (required)**: 为了更好地让该技能处理本机遇到的各种 agent bug，
 > 请自行配置所需的信息 —— simply ask **your own AI assistant** to complete the following:
@@ -110,7 +106,11 @@ In skill-capable agents it triggers automatically on keywords like "agent error"
 
 ### 安装
 
-将本目录复制（或 symlink/junction）到 Agent 的技能目录 `~/.agents/skills/agent-troubleshoot/` 即可。
+**最简方式** —— 对你的 AI 助手说一句：
+
+> 帮我安装 agent-troubleshoot 技能，项目地址：https://github.com/cjc505/agent-troubleshoot-skill ，下载放入我的技能目录并完成本机配置。
+
+**手动安装**：从 [Releases](https://github.com/cjc505/agent-troubleshoot-skill/releases) 下载 `agent-troubleshoot-skill-v1.0.0.zip` → 解压到 `~/.agents/skills/agent-troubleshoot/`。
 
 > **⚠️ 安装后配置（必读）**：为了更好地让该技能处理本机遇到的各种 agent bug，
 > 请自行配置所需的信息——直接让您的 AI 助手完成以下事项即可：
