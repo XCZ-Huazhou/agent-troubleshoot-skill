@@ -6,6 +6,8 @@
 
 **把踩过的坑都记下来，遇到问题让AI先翻笔记本，再动手修。**
 
+**一个会不断成长的故障排查知识库技能 | A constantly-growing troubleshooting knowledge-base skill for AI coding agents**
+
 适用于 Codex、Claude Code、OpenCode 等常用的 Agent 工具。Works with any agent that supports the Agent Skills spec (Codex, Claude Code, OpenCode, etc.).
 
 [中文](#简介中文) | [English](#overview-english)
