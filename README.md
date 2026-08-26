@@ -47,10 +47,12 @@ Copy (or symlink) this directory into your agent's skills directory:
 └── utils/matcher.py      # keyword extraction / Jaccard matching / dedup
 ```
 
-> **⚠️ Post-install setup (required)**: After installing, ask **your own AI assistant** to
-> adapt this skill to your machine — Python interpreter path (pixi / conda / system),
-> network proxy ports, local knowledge-base storage path, etc. These differ on every machine;
-> using the skill unadapted may prevent it from working correctly.
+> **⚠️ Post-install setup (required)**: 为了更好地让该技能处理本机遇到的各种 agent bug，
+> 请自行配置所需的信息 —— simply ask **your own AI assistant** to complete the following:
+>
+> - **Python interpreter path** (pixi / conda / system) — required to run `diagnose.py` and self-tests
+> - **Local config & log locations of your agents** (e.g. `~/.codex/config.toml`, `~/.claude/`) — required when diagnosing framework-specific issues
+> - **Network / proxy ports** of your machine — required when debugging network-type failures
 
 > 💡 **Using an agent not listed above?**
 > No need to wait for updates — just ask your own AI assistant to append cases for the new
@@ -110,9 +112,12 @@ In skill-capable agents it triggers automatically on keywords like "agent error"
 
 将本目录复制（或 symlink/junction）到 Agent 的技能目录 `~/.agents/skills/agent-troubleshoot/` 即可。
 
-> **⚠️ 安装后配置（必读）**：安装完成后，请让**您自己的 AI 助手**根据本机实际环境完成适配——
-> 包括 Python 解释器路径（pixi / conda / 系统环境自选）、网络代理端口、知识库本地存储路径等。
-> 每台机器的端口与环境各不相同，未经适配直接使用可能无法正常工作。
+> **⚠️ 安装后配置（必读）**：为了更好地让该技能处理本机遇到的各种 agent bug，
+> 请自行配置所需的信息——直接让您的 AI 助手完成以下事项即可：
+>
+> - **Python 解释器路径**（pixi / conda / 系统环境均可）：运行 `diagnose.py` 与自检所必需
+> - **本机各 Agent 的配置与日志位置**（如 `~/.codex/config.toml`、`~/.claude/`）：排查框架专属故障时必需
+> - **本机网络 / 代理端口**：诊断网络类故障时必需
 
 > 💡 **列表里没有你的 Agent？**
 > 无需等待更新——直接让您的 AI 大模型参照知识库现有案例格式
