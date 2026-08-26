@@ -39,7 +39,7 @@ Ships with 30 pre-loaded cases across 8 platforms:
 
 Works with any skills-capable agent (Codex / Claude Code / opencode, etc.). **Copy & send just this line to your AI:**
 
-> 帮我安装 agent-troubleshoot 技能，项目地址：https://github.com/cjc505/agent-troubleshoot-skill ，下载放入我的技能目录并完成本机配置。
+> 帮我安装 agent-troubleshoot 技能，项目地址：https://github.com/XCZ-Huazhou/agent-troubleshoot-skill ，下载放入我的技能目录并完成本机配置。
 
 ---
 
@@ -99,7 +99,7 @@ Once the skill is enabled, it triggers automatically when keywords like "Agent e
 
 适用于任何支持技能机制的 Agent（Codex / Claude Code / opencode 等）。**复制下面这一行发送给您的 AI 即可：**
 
-> 帮我安装 agent-troubleshoot 技能，项目地址：https://github.com/cjc505/agent-troubleshoot-skill ，下载放入我的技能目录并完成本机配置。
+> 帮我安装 agent-troubleshoot 技能，项目地址：https://github.com/XCZ-Huazhou/agent-troubleshoot-skill ，下载放入我的技能目录并完成本机配置。
 
 ---
 
