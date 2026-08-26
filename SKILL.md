@@ -455,4 +455,4 @@ python diagnose.py "Codex 报 401 错误"
 
 ## 免责声明
 
-本技能由 opencode 平台的 OX Alpha 模型整理、发布，技能可能存在不完善之处，敬请见谅！
+本技能由 opencode 平台的 OX Alpha 模型整理、发布，技能跟内容描述可能存在不完善之处，敬请见谅！
