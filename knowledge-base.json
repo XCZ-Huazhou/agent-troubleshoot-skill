@@ -173,7 +173,7 @@
       ]
     },
     "Claude": {
-      "description": "Anthropic Claude Code - 通用 AI 助手",
+      "description": "Anthropic Claude Code - Agent 编程工具",
       "unique-issues": [
         {
           "id": "CLAUDE-001",

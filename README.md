@@ -6,7 +6,7 @@
 
 **可学习的 Agent 故障排查知识库技能 | A learnable troubleshooting knowledge-base skill for AI coding agents**
 
-适用于 Codex、Claude Code、OpenCode 等常用的 AI 助手（Agent）工具。
+适用于 Codex、Claude Code、OpenCode 等常用的 Agent 工具。
 Works with any agent that supports the Agent Skills spec (Codex, Claude Code, OpenCode, etc.).
 
 [中文](#简介中文) | [English](#overview-english)
@@ -49,7 +49,7 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, Op
 ---
 
 **⚠️ 安装后配置清单** *（以下是说明文字，无需复制发送）*
-为了更好地让该技能处理本机遇到的各种 agent bug，安装完成后请让 AI 助手逐项确认：
+为了更好地让该技能处理本机遇到的各种 agent bug，安装完成后请让 AI Agent 逐项确认：
 
 - **Python 解释器路径**（pixi / conda / 系统环境均可）：运行 `diagnose.py` 与自检所必需
 - **本机各 Agent 的配置与日志位置**（如 `~/.codex/config.toml`、`~/.claude/`）：排查框架专属故障时必需
