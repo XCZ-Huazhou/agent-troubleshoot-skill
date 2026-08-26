@@ -20,10 +20,10 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, Op
 1. **故障诊断**：根据错误症状（错误码、框架名、关键词）匹配历史案例，输出带置信度的解决方案
 2. **自动学习**：问题解决后自动归档新案例到知识库（Jaccard 语义去重、多解法合并）
 3. **两级分类**：「共同问题」是任何框架都可能遇到的（如 401 认证失败、429 限流）；「独有问题」是只在某个框架自身工具链里才存在的故障（例如 `azd` 部署错误只可能发生在微软 Foundry 上）
-4. **收录有门槛**：用户确认问题解决后才允许入库；API 密钥、端口、路径等敏感信息一律脱敏——知识库可以放心公开分享
+4. **收录有门槛**：用户确认问题解决后才允许入库；API 密钥、端口、路径等敏感信息一律不收录——知识库可以放心公开分享
 
 > **🔒 两句安心话**
-> - **你的敏感信息不会被收录**：API 密钥、令牌、端口、本机路径等，入库前一律脱敏处理
+> - **你的敏感信息不会被收录**：API 密钥、令牌、端口、本机路径等，入库前都会自动删掉或替换掉
 > - **错误方案不会被收录**：只有你确认问题真正解决后，案例才会写入知识库
 
 预置 8 个平台共 30 个案例：
@@ -85,10 +85,10 @@ A **learnable troubleshooting knowledge base** for AI coding agents:
 1. **Diagnose**: matches error symptoms (error codes, framework names, keywords) against archived cases and returns ranked solutions with confidence scores
 2. **Self-learning**: resolved cases are auto-archived with Jaccard-based deduplication and multi-solution merging
 3. **Two-level taxonomy**: cross-framework *common issues* (e.g. 401 auth, 429 rate limit — any agent can hit them) vs per-framework *unique issues* (failures that only exist inside one framework's own toolchain, e.g. an `azd` deployment error can only happen on Microsoft Foundry)
-4. **Gated archiving**: cases enter the knowledge base only after you confirm the issue is actually resolved; sensitive info (API keys, ports, local paths) is always sanitized — safe to share publicly
+4. **Gated archiving**: cases enter the knowledge base only after you confirm the issue is actually resolved; sensitive info (API keys, ports, local paths) is never written in — safe to share publicly
 
 > **🔒 Two promises**
-> - **Your secrets are never recorded**: API keys, tokens, ports and local paths are always sanitized before anything enters the knowledge base
+> - **Your secrets are never recorded**: API keys, tokens, ports and local paths are always removed or replaced before anything enters the knowledge base
 > - **Wrong fixes are never recorded**: cases are archived only after you confirm the issue is truly resolved
 
 Ships with 30 pre-loaded cases across 8 platforms:
