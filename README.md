@@ -37,31 +37,24 @@ Ships with 30 pre-loaded cases across 8 platforms:
 
 ### Install
 
-Just tell your AI agent (Codex / Claude Code / opencode, etc. — any agent that supports skills):
+Works with any skills-capable agent (Codex / Claude Code / opencode, etc.). **Copy & send just this line to your AI:**
 
 > 帮我安装 agent-troubleshoot 技能，项目地址：https://github.com/cjc505/agent-troubleshoot-skill ，下载放入我的技能目录并完成本机配置。
 
-> **⚠️ Post-install setup (required)**: 为了更好地让该技能处理本机遇到的各种 agent bug，
-> 请自行配置所需的信息 —— simply ask **your own AI assistant** to complete the following:
->
-> - **Python interpreter path** (pixi / conda / system) — required to run `diagnose.py` and self-tests
-> - **Local config & log locations of your agents** (e.g. `~/.codex/config.toml`, `~/.claude/`) — required when diagnosing framework-specific issues
-> - **Network / proxy ports** of your machine — required when debugging network-type failures
+---
 
-> 💡 **Using an agent not listed above?**
-> No need to wait for updates — just ask your own AI assistant to append cases for the new
-> platform to `knowledge-base.json`, following the existing case format
-> (symptoms / rootCause / solution / prevention), then register it under `frameworks`.
+**⚠️ Post-install checklist** *(reference only — do NOT copy-paste this part)*
+To help the skill debug local agent issues effectively, have your AI assistant confirm each item after install:
+
+- **Python interpreter path** (pixi / conda / system): required to run `diagnose.py` and self-tests
+- **Local config & log locations of your agents** (e.g. `~/.codex/config.toml`, `~/.claude/`): required for framework-specific diagnosis
+- **Network / proxy ports**: required when debugging network-type failures
+
+**💡 Using an agent not listed?** No need to wait for updates — ask your own AI to append cases for the new platform to `knowledge-base.json`, following the existing case format (symptoms / rootCause / solution / prevention), then register it under `frameworks`.
 
 ### Usage
 
-```bash
-python diagnose.py "Codex 401 error"
-python diagnose.py "Claude 429 rate limit"
-python utils/matcher.py   # run self-tests
-```
-
-In skill-capable agents it triggers automatically on keywords like "agent error", "troubleshoot", "401", "timeout".
+In skill-capable agents it triggers automatically — just mention keywords like "agent error", "troubleshoot", "401", "timeout".
 
 ### Knowledge base format
 
@@ -104,32 +97,22 @@ In skill-capable agents it triggers automatically on keywords like "agent error"
 
 ### 安装
 
-对你的 AI 助手说一句（Codex / Claude Code / opencode 等支持技能的 Agent 均可）：
+适用于任何支持技能机制的 Agent（Codex / Claude Code / opencode 等）。**复制下面这一行发送给您的 AI 即可：**
 
 > 帮我安装 agent-troubleshoot 技能，项目地址：https://github.com/cjc505/agent-troubleshoot-skill ，下载放入我的技能目录并完成本机配置。
 
-> **⚠️ 安装后配置（必读）**：为了更好地让该技能处理本机遇到的各种 agent bug，
-> 请自行配置所需的信息——直接让您的 AI 助手完成以下事项即可：
->
-> - **Python 解释器路径**（pixi / conda / 系统环境均可）：运行 `diagnose.py` 与自检所必需
-> - **本机各 Agent 的配置与日志位置**（如 `~/.codex/config.toml`、`~/.claude/`）：排查框架专属故障时必需
-> - **本机网络 / 代理端口**：诊断网络类故障时必需
+---
 
-> 💡 **列表里没有你的 Agent？**
-> 无需等待更新——直接让您的 AI 大模型参照知识库现有案例格式
-> （symptoms / rootCause / solution / prevention）自行补充新平台的故障案例，
-> 并在 `frameworks` 中登记即可。
+**⚠️ 安装后配置清单** *（以下是说明文字，无需复制发送）*
+为了更好地让该技能处理本机遇到的各种 agent bug，安装完成后请让 AI 助手逐项确认：
+
+- **Python 解释器路径**（pixi / conda / 系统环境均可）：运行 `diagnose.py` 与自检所必需
+- **本机各 Agent 的配置与日志位置**（如 `~/.codex/config.toml`、`~/.claude/`）：排查框架专属故障时必需
+- **本机网络 / 代理端口**：诊断网络类故障时必需
+
+**💡 列表里没有你的 Agent？** 无需等待更新——直接让您的 AI 大模型参照知识库现有案例格式（symptoms / rootCause / solution / prevention）自行补充新平台的故障案例，并在 `frameworks` 中登记即可。
 
 ### 使用
-
-```bash
-# 命令行直接诊断
-python diagnose.py "Codex 报 401 错误"
-python diagnose.py "Claude 429 rate limit"
-
-# 运行自检
-python utils/matcher.py
-```
 
 在支持 skills 的 Agent 中可自动触发：对话中提到「Agent 报错 / 排查 / 401 / timeout」等关键词即可。
 
