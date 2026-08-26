@@ -161,8 +161,34 @@ python utils/matcher.py
 
 ## Contributing · 贡献
 
-Issues and pull requests are welcome — especially new troubleshooting cases for the knowledge base.
-欢迎提交 Issue 与 PR，尤其是补充新的故障案例到知识库。
+Issues and pull requests are welcome — especially new troubleshooting cases.
+欢迎提交 Issue 与 PR，尤其是补充新的故障案例。
+
+**What to provide · 提交新案例请提供以下信息：**
+
+| Item 项目 | Description 说明 |
+|---|---|
+| Platform 平台 | Which agent framework it belongs to（属于哪个框架，如 Codex / Claude / 其他新平台）|
+| Symptoms 症状 | Exact error messages, error codes, keywords — both English & Chinese welcome（报错原文、错误码、关键词，中英文均可）|
+| Root cause 根因 | Why it happened, if known（成因，若已知）|
+| Solution 解决方案 | The steps that actually fixed it（实际验证有效的解决步骤）|
+| Prevention 预防 | Optional · 可选 |
+
+**File types / formats · 文件类型与格式：**
+
+- **Easiest 最简单**: open an **Issue** and write the info above in plain text — the case will be formatted and merged into `knowledge-base.json` for you
+  （直接开一个 Issue 用纯文本写清楚上表内容即可，会有人/AI 帮你格式化入库）
+- **Via PR 走 PR**: edit `knowledge-base.json` directly, appending a new object under the matching platform's `unique-issues` (or create a new platform block), following the existing schema — `id` is auto-numbered, so leave it out or use the next number:
+  （直接编辑 `knowledge-base.json`，在对应平台的 `unique-issues` 里按现有字段追加一个对象即可，`id` 会自动编号）
+
+```json
+{
+  "symptoms": ["error message / 报错关键词"],
+  "rootCause": "why it happened / 成因",
+  "solution": "verified fix steps / 已验证的解决步骤",
+  "prevention": "optional / 可选"
+}
+```
 
 ## Disclaimer · 免责声明
 
