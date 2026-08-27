@@ -4,14 +4,14 @@
 
 用法：
     python pick_python.py                     # 快速扫描（PATH/py启动器/conda）+ 弹窗点选
-    python pick_python.py --deep              # 先快速扫描，再全盘限时深度扫描，然后弹窗
-    python pick_python.py --deep --roots D:\\ --timeout 180
+    python pick_python.py --deep              # 先快速扫描，再全盘深度扫描（不限时），然后弹窗
+    python pick_python.py --deep --roots D:\\
     python pick_python.py --scan-only         # 只打印扫描结果（JSON），不弹窗
 
 说明：
     - 仅用标准库（含 tkinter 图形界面），无需安装任何第三方库
     - 深度扫描会遍历本地固定磁盘查找 python.exe / pypy.exe，
-      自动跳过 Windows、回收站、node_modules、.git 等无关目录，默认限时 300 秒
+      自动跳过 Windows、回收站、node_modules、.git 等无关目录，不限时直至扫完所有磁盘
     - 选中的解释器路径保存到本目录 .python_default.json，
       之后运行 diagnose.py 时优先使用该解释器
 """
@@ -103,13 +103,12 @@ def fixed_drives():
     return roots
 
 
-def deep_scan(candidates, roots=None, timeout=300.0):
-    """限时全盘深度扫描：在给定根目录（默认全部固定磁盘）下查找解释器。
+def deep_scan(candidates, roots=None):
+    """全盘深度扫描：在给定根目录（默认全部固定磁盘）下查找解释器。
 
     - candidates 为快速扫描结果列表，深度扫描结果会合并后返回
-    - 跳过 SKIP_DIRS 中的无关目录；超过 timeout 秒立即停止并保留已找到的结果
+    - 跳过 SKIP_DIRS 中的无关目录；不限时，直至扫完所有磁盘
     """
-    deadline = time.monotonic() + timeout
     if roots is None:
         roots = fixed_drives()
 
@@ -117,15 +116,8 @@ def deep_scan(candidates, roots=None, timeout=300.0):
 
     checked = 0
     last_report = time.monotonic()
-    timed_out = False
     for root in roots:
-        if timed_out:
-            break
         for cur, dirs, files in os.walk(root, topdown=True, onerror=None):
-            if time.monotonic() > deadline:
-                timed_out = True
-                print(f"[深度扫描] 已达 {timeout:.0f} 秒时限，提前结束", flush=True)
-                break
             checked += 1
             now = time.monotonic()
             if now - last_report > 5:
@@ -156,7 +148,7 @@ def deep_scan(candidates, roots=None, timeout=300.0):
                 _add(found, os.path.join(cur, f), src)
         # end walk
 
-    return list(found.values()), timed_out
+    return list(found.values())
 
 
 def save_choice(path, source):
@@ -222,17 +214,12 @@ def main():
     argv = sys.argv[1:]
     scan_only = "--scan-only" in argv
     do_deep = "--deep" in argv
-    timeout = 300.0
     roots = None
     extras = []
 
     i = 0
     while i < len(argv):
         a = argv[i]
-        if a == "--timeout" and i + 1 < len(argv):
-            timeout = float(argv[i + 1])
-            i += 2
-            continue
         if a == "--roots" and i + 1 < len(argv):
             roots = [r for r in argv[i + 1].split(",") if r.strip()]
             i += 2
@@ -245,8 +232,7 @@ def main():
     seen = {c["path"].lower() for c in candidates}
 
     if do_deep:
-        timed_out = False
-        candidates, timed_out = deep_scan(candidates, roots=roots, timeout=timeout)
+        candidates = deep_scan(candidates, roots=roots)
         seen = {c["path"].lower() for c in candidates}
         for extra in extras:
             p = os.path.abspath(os.path.expandvars(extra))

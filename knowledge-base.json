@@ -323,6 +323,51 @@
           "rootCause": "Gemini API 日配额用尽",
           "solution": "申请配额提升 (https://makersuite.google.com/app/apikey)，或切换到付费计划",
           "prevention": "监控每日使用量，设置配额告警"
+        },
+        {
+          "id": "GEMINI-004",
+          "symptoms": [
+            "400 Invalid argument",
+            "tool call failed after first round",
+            "第一轮工具调用成功第二轮报 400",
+            "thought_signature missing",
+            "函数调用缺少签名"
+          ],
+          "rootCause": "Gemini 3.x 工具调用需要 thought_signature，客户端（如 ZCode）走 openai 兼容协议时未保留 extra_content.google.thought_signature 字段，导致第二轮回放历史时 Google 拒绝请求。这是 ZCode 与 Gemini 原生协议不兼容的问题。",
+          "solution": "方案 1（推荐）：切换到官方直连配置（baseURL: https://generativelanguage.googleapis.com/v1beta/openai），ZCode 已内置 Gemini 适配器可自动处理签名；方案 2：使用 OpenRouter 中转（OpenRouter 自动补全签名），但需要账户有足够余额（max_tokens 建议≤8192 避免 402）；方案 3：等待 ZCode 官方适配 extra_content 字段",
+          "wrongSolutions": [
+            {
+              "method": "反复重试请求",
+              "whyItFailed": "每次回放都会丢失 thought_signature，重试多少次都是 400"
+            },
+            {
+              "method": "切换到其他中转服务商",
+              "whyItFailed": "只要不解码 extra_content 并回传，任何中转都会报同样的 400"
+            },
+            {
+              "method": "降低 max_tokens 或切换模型",
+              "whyItFailed": "问题不在配额或模型，是协议层的字段缺失"
+            }
+          ],
+          "prevention": "优先使用官方直连配置；如果必须用 OpenRouter，设置 max_tokens≤8192 避免 402 配额错误；避免在工具调用密集的场景使用 Gemini 3.x"
+        },
+        {
+          "id": "GEMINI-005",
+          "symptoms": [
+            "402 Payment Required",
+            "OpenRouter quota exceeded",
+            "you requested up to 32000 tokens but can only afford",
+            "余额不足无法预付"
+          ],
+          "rootCause": "OpenRouter 按请求的 max_tokens 预扣费用，账户余额不足以覆盖预付额度（如 32000 tokens），即使实际使用远低于此数也会被拒。这与 Gemini 官方的配额/日限额无关，是 OpenRouter 的计费机制。",
+          "solution": "方案 1：在 OpenRouter 账户充值（https://openrouter.ai/settings/credits）；方案 2：在 ZCode 配置中将 Gemini 模型的 output limit 设为≤8192；方案 3：切换到 Gemini 官方直连配置",
+          "wrongSolutions": [
+            {
+              "method": "反复重试或降低 max_tokens 到 10000 以下",
+              "whyItFailed": "OpenRouter 在连接建立时就按 max_tokens 计算预扣，余额不足直接 402"
+            }
+          ],
+          "prevention": "在 OpenRouter 账户页设置 usage alert；ZCode 配置中为 OpenRouter 中转模型设置 output limit≤8192；或使用官方直连避免预扣费机制"
         }
       ]
     },
@@ -461,7 +506,7 @@
   "metadata": {
     "version": "1.0.1",
     "lastUpdated": "2026-08-27",
-    "totalCases": 30,
+    "totalCases": 32,
     "frameworks": [
       "Antigravity",
       "Claude",
