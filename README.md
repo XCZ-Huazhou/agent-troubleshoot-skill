@@ -2,7 +2,8 @@
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Platforms](https://img.shields.io/badge/platforms-8-blue)
-![Cases](https://img.shields.io/badge/cases-30-green)
+![Cases](https://img.shields.io/badge/cases-32-green)
+![Version](https://img.shields.io/badge/version-v1.0.1-blue)
 
 
 **一个会不断成长的故障排查知识库技能 | A constantly-growing troubleshooting knowledge-base skill for AI coding agents**
@@ -31,7 +32,7 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, Op
 | **持续积累** | 越用越强 | 每确认一个新案例，知识库就更扎实，形成正向循环 |
 
 > **🔒 隐私与质量保障**
-> - **你的敏感信息不会被收录**：API密钥、令牌、端口、本机路径等，入库前都会自动删掉或替换掉
+> - **你的敏感信息不会被收录**：API 密钥、令牌、端口、本机路径等，入库前都会自动删除或替换；**写入前还会二次检查**，凡是疑似密钥的长串一律拦截，必须打码或用占位符替代后才可入库
 > - **错误方案不会被收录**：只有你确认问题真正解决后，案例才会写入知识库
 
 核心功能：
@@ -41,7 +42,7 @@ Works with any agent that supports the Agent Skills spec (Codex, Claude Code, Op
 3. **避坑指南**：记录试过但没用的方法，帮你少走弯路（`wrongSolutions`字段）
 4. **两级分类**：「共同问题」是任何框架都可能遇到的（如401认证失败、429限流）；「独有问题」是只在某个框架自身工具链里才存在的故障
 
-预置 8 个平台共 30 个案例：
+预置 8 个平台共 32 个案例：
 
 | 类别 | 示例 |
 |---|---|
@@ -132,7 +133,7 @@ How it helps — three layers:
 | **Continuous growth** | Gets stronger with use | Every confirmed case makes the KB more complete; the more you use it, the faster it resolves |
 
 > **🔒 Privacy & quality guarantees**
-> - **Your secrets are never recorded**: API keys, tokens, ports and local paths are always removed or replaced before anything enters the knowledge base
+> - **Your secrets are never recorded**: API keys, tokens, ports and local paths are always removed or replaced before anything enters the knowledge base; **a second pre-write check blocks any suspected key-like strings**, which must be redacted or replaced with placeholders
 > - **Wrong fixes are never recorded**: cases are archived only after you confirm the issue is truly resolved
 
 Core features:
@@ -142,7 +143,7 @@ Core features:
 3. **Dead-end avoidance**: documents tried-but-failed approaches so you skip the same wrong turns (`wrongSolutions` field)
 4. **Two-level taxonomy**: cross-framework *common issues* (e.g. 401 auth, 429 rate limit — any agent can hit them) vs per-framework *unique issues* (failures that only exist inside one framework's own toolchain)
 
-Ships with 30 pre-loaded cases across 8 platforms:
+Ships with 32 pre-loaded cases across 8 platforms:
 
 | Category | Examples |
 |---|---|
@@ -160,7 +161,7 @@ Ships with 30 pre-loaded cases across 8 platforms:
 
 Works with any skills-capable agent (Codex / Claude Code / OpenCode, etc.). **Copy & send just this line to your AI:**
 
-> 帮我安装 agent-troubleshoot 技能，项目地址：https://github.com/XCZ-Huazhou/agent-troubleshoot-skill ，下载放入我的技能目录并完成本机配置。
+> 帮我安装 agent-troubleshoot 技能，项目地址：https://github.com/XCZ-Huazhou/agent-troubleshoot-skill，下载放入我的技能目录并完成本机配置。**当前最新版本 v1.0.1（2026-08-27），新增敏感信息拦截、2 个 Gemini 案例、确认语扩展 ~35 种、移除扫盘时限。**
 
 ---
 
