@@ -176,15 +176,15 @@
             "第三方中转模型超时",
             "ccswitch codex timeout"
           ],
-          "rootCause": "第三方供应商(如 CSTai uni-api.cstcloud.cn)特定模型上游响应极慢(deepseek-v4-flash 最小请求 87 秒)，超过 Codex 等待时间；链路本身(cc-switch 本地代理 127.0.0.1:15721)正常。注意：15721 是 cc-switch 转发口，与用户自建代理端口(如 Clash 17891)无关",
-          "solution": "1) 对本地代理端口逐模型发最小请求(stream 与非 stream 各一次)定位是哪个模型慢；2) 切换到响应正常的模型(如 qwen3.5)；3) 检查 cc-switch 日志中 forwarder 记录是否有转发后无完成记录的条目；4) 慢模型等上游恢复后再用",
+          "rootCause": "第三方供应商特定模型上游响应极慢（最小请求 87 秒），超过 Codex 等待时间；本地转发链路正常。注意：转发口与用户自建代理端口无关",
+          "solution": "1) 对本地代理端口逐模型发最小请求(stream 与非 stream 各一次)定位是哪个模型慢；2) 切换到响应正常的模型；3) 检查 cc-switch 日志中 forwarder 记录是否有转发后无完成记录的条目；4) 慢模型等上游恢复后再用",
           "wrongSolutions": [
             {
-              "method": "反复检查 Clash 代理端口 17891",
+              "method": "反复检查本地代理端口",
               "whyItFailed": "代理本身正常，问题在上游模型响应慢，不在本地代理"
             },
             {
-              "method": "重启 cc-switch 服务",
+              "method": "重启本地转发服务",
               "whyItFailed": "cc-switch 转发链路无故障，重启不能加速上游响应"
             },
             {
