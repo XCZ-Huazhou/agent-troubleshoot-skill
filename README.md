@@ -5,12 +5,6 @@
 ![Cases](https://img.shields.io/badge/cases-32-green)
 ![Version](https://img.shields.io/badge/version-v1.0.1-blue)
 
-**最新发布 (v1.0.1 · 2026-08-27)**
-- 🔐 敏感信息写入拦截：入库前二次检查 API Key/令牌/密码（不限前缀格式，长串必拦截）
-- 🎤 确认语扩展：~35 种变体（可以/可行/ok/成了/搞定咯/稳了/👌/✅ 等），适配不同用户习惯
-- 🪐 无限制扫盘：pick_python.py 移除 300 秒时限，不限时扫完所有磁盘
-- 📚 新增案例：GEMINI-004（thought_signature 缺失）、GEMINI-005（OpenRouter 402）、总案例数达 32 个
-- 🛣️ 避坑指南：wrongSolutions 字段记录试过没用的方法，防止重复踩坑
 
 
 **一个会不断成长的故障排查知识库技能 | A constantly-growing troubleshooting knowledge-base skill for AI coding agents**
